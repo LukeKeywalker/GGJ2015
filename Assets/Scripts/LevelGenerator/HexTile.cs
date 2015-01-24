@@ -39,6 +39,7 @@ public class HexTile : MonoBehaviour
 		}
 	}
 
+	public GameObject m_model;
 	public Material[] m_hexMaterials;
 
 	private Dictionary<HexType, Action<Transform>> m_grabEffects;
@@ -52,7 +53,7 @@ public class HexTile : MonoBehaviour
 	public HexType hexType
 	{
 		get { return m_hexType; }
-		set { m_hexType = value; this.renderer.material = m_hexMaterials[(int)m_hexType]; }
+		set { m_hexType = value; m_model.renderer.material = m_hexMaterials[(int)m_hexType]; }
 	}
 
 	private HexType m_hexType;
