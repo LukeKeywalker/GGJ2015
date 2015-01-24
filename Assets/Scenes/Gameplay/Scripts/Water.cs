@@ -7,6 +7,8 @@ public class Water : MonoBehaviour
 
     private WaterSlice[] m_waterSlices;
 
+    private float m_cooldown;
+
     void Awake()
     {
         InitializeWaterSlices();
@@ -14,17 +16,19 @@ public class Water : MonoBehaviour
 
     private void InitializeWaterSlices()
     {
+        float wide = 1.4f;
+
         float step = 0.02f;
-        int count = (int)(2.0f / step) + 1;
+        int count = (int)((wide * 2.0f) / step) + 1;
 
         m_waterSlices = new WaterSlice[count];
 
         int index = 0;
-        for (float x = -1.0f; x <= 1.0f; x += step)
+        for (float x = -wide; x <= wide; x += step)
         {
             m_waterSlices[index] = (WaterSlice)Instantiate(m_waterSlicePrefab);
             m_waterSlices[index].transform.localScale = Vector3.one;
-            m_waterSlices[index].transform.localPosition = new Vector3(x, 0.0f, 0.0f);
+            m_waterSlices[index].transform.localPosition = new Vector3(x, 0.0f, -0.01f);
 
             index++;
         }
@@ -41,7 +45,7 @@ public class Water : MonoBehaviour
         float range = 10.0f;
 
         if (Input.GetKeyDown(KeyCode.Space))
-            m_waterSlices[20].Move(0.2f);
+            m_waterSlices[Random.Range(0, m_waterSlices.Length)].Move(0.10f);
 
         for (int i = 0; i < m_waterSlices.Length; i++)
         {
@@ -59,6 +63,14 @@ public class Water : MonoBehaviour
                 m_waterSlices[i].Top = Mathf.SmoothDamp(m_waterSlices[i].Top, (left + right) / 2.0f, ref velocity, 0.001f);
                 m_waterSlices[i].SmoothDampVelocity = velocity;
             }
+        }
+
+        m_cooldown -= Time.deltaTime;
+        if (m_cooldown < 0.0f)
+        {
+            m_cooldown = Random.Range(0.01f, 0.5f);
+
+            m_waterSlices[Random.Range(0, m_waterSlices.Length)].Move(0.10f);
         }
 	}
 

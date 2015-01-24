@@ -3,10 +3,14 @@ using System.Collections;
 
 public class WaterSlice : MonoBehaviour
 {
+    public ParticleSystem m_particles;
+
     private float m_power;
     private bool m_isMoveing;
     private float m_top;
     private float m_time;
+
+    private bool m_isRaising;
 
     public float SmoothDampVelocity
     {
@@ -50,6 +54,14 @@ public class WaterSlice : MonoBehaviour
             m_time += Time.deltaTime * 5.0f;
         }
 
+        ////if (m_isRaising && m_top < transform.position.y && IsMoving)
+        ////    Splash(1.0f);
+
+        if (m_power < 0.005f)
+            m_isMoveing = false;
+
+        m_isRaising = m_top > transform.position.y;
+
         Vector3 position = transform.position;
         position.y = m_top;
 
@@ -61,5 +73,12 @@ public class WaterSlice : MonoBehaviour
         m_isMoveing = true;
         m_power = power;
         m_time = Mathf.PI;
+
+        Splash(power);
+    }
+
+    public void Splash(float power)
+    {
+        m_particles.Play();
     }
 }
