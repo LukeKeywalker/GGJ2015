@@ -32,6 +32,7 @@ public class LizardInput : MonoBehaviour
             for (int i = 0; i < 4; i++)
             {
                 m_pawsPrevStates[i] = new PawState();
+				m_pawsPrevStates[i].IsGripped = true;
                 m_pawsPrevStates[i].Direction = Vector3.up;
             }
 
