@@ -1,16 +1,8 @@
 using UnityEngine;
 using System.Collections;
 
-public class BodyController : MonoBehaviour {
-
-	public enum LimbId
-	{
-		ArmLeft,
-		ArmRight,
-		LegLeft,
-		LegRight
-	}
-
+public class BodyController : MonoBehaviour
+{
 	public Limb[] m_limbs;
 
 	// Use this for initialization

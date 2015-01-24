@@ -5,9 +5,9 @@ public class LizardInput : MonoBehaviour
 {
     private static LizardInput m_instance;
 
-    public event System.Action<PawType> PawGriped;
-    public event System.Action<PawType> PawReleased;
-    public event System.Action<PawType, Vector3> PawDirectionChanged;
+    public event System.Action<LimbId> PawGriped;
+    public event System.Action<LimbId> PawReleased;
+    public event System.Action<LimbId, Vector3> PawDirectionChanged;
 
     private InputType[] m_pawsBinding;
     private PawState[] m_pawsPrevStates;
@@ -33,6 +33,11 @@ public class LizardInput : MonoBehaviour
                 m_pawsPrevStates[i] = new PawState();
                 m_pawsPrevStates[i].Direction = Vector3.up;
             }
+
+            SetPawBinding(LimbId.ArmLeft, InputType.Pad1Left);
+            SetPawBinding(LimbId.ArmRight, InputType.Pad1Right);
+            SetPawBinding(LimbId.LegLeft, InputType.Wasd);
+            SetPawBinding(LimbId.LegRight, InputType.Arrows);
         }
     }
 
@@ -40,7 +45,7 @@ public class LizardInput : MonoBehaviour
     {
         for (int i = 0; i < 4; i++)
         {
-            PawType pawType = (PawType)i;
+            LimbId pawType = (LimbId)i;
 
             UpdateDirection(pawType);
 
@@ -58,7 +63,7 @@ public class LizardInput : MonoBehaviour
         }
     }
 
-    public void SetPawBinding(PawType pawType, InputType inputType)
+    public void SetPawBinding(LimbId pawType, InputType inputType)
     {
         m_pawsBinding[(int)pawType] = inputType;
     }
@@ -80,7 +85,7 @@ public class LizardInput : MonoBehaviour
         return false;
     }
 
-    private void UpdateDirection(PawType pawType)
+    private void UpdateDirection(LimbId pawType)
     {
         float speed = 40.0f;
 

@@ -10,7 +10,7 @@ public class SetupController : MonoBehaviour
     public InputTypeControl m_backRightInputType;
     public ButtonBehavior m_startButton;
 
-    private PawType m_selectedPawType;
+    private LimbId m_selectedPawType;
 
     void Awake()
     {
@@ -26,10 +26,10 @@ public class SetupController : MonoBehaviour
 
         //SetInputType(PawType.FrontLeft, InputType.Wasd);
         //SetInputType(PawType.FrontRight, InputType.Arrows);
-        SetInputType(PawType.FrontLeft, InputType.Pad1Left);
-        SetInputType(PawType.FrontRight, InputType.Pad1Right);
-        SetInputType(PawType.BackLeft, InputType.Pad2Left);
-        SetInputType(PawType.BackRight, InputType.Pad2Right);
+        SetInputType(LimbId.ArmLeft, InputType.Pad1Left);
+        SetInputType(LimbId.ArmRight, InputType.Pad1Right);
+        SetInputType(LimbId.LegLeft, InputType.Pad2Left);
+        SetInputType(LimbId.LegRight, InputType.Pad2Right);
     }
 
     private void HancleStartButtonClicked(object obj)
@@ -37,25 +37,25 @@ public class SetupController : MonoBehaviour
         Application.LoadLevel("PawsTest");
     }
 
-    private void SetInputType(PawType pawType, InputType inputType)
+    private void SetInputType(LimbId pawType, InputType inputType)
     {
         LizardInput.Instance.SetPawBinding(pawType, inputType);
 
         switch (pawType)
         {
-            case PawType.FrontLeft:
+            case LimbId.ArmLeft:
                 m_frontLeftInputType.Initialize(inputType);
                 break;
 
-            case PawType.FrontRight:
+            case LimbId.ArmRight:
                 m_frontRightInputType.Initialize(inputType);
                 break;
 
-            case PawType.BackLeft:
+            case LimbId.LegLeft:
                 m_backLeftInputType.Initialize(inputType);
                 break;
 
-            case PawType.BackRight:
+            case LimbId.LegRight:
                 m_backRightInputType.Initialize(inputType);
                 break;
         }
@@ -70,25 +70,25 @@ public class SetupController : MonoBehaviour
 
     private void FrontLeftInputTypeControlClicked(InputType inputType)
     {
-        ShowPeekInputPanel(PawType.FrontLeft);
+        ShowPeekInputPanel(LimbId.ArmLeft);
     }
 
     private void FrontRightInputTypeControlClicked(InputType inputType)
     {
-        ShowPeekInputPanel(PawType.FrontRight);
+        ShowPeekInputPanel(LimbId.ArmRight);
     }
 
     private void BackLeftInputTypeControlClicked(InputType inputType)
     {
-        ShowPeekInputPanel(PawType.BackLeft);
+        ShowPeekInputPanel(LimbId.LegLeft);
     }
 
     private void BackRightInputTypeControlClicked(InputType inputType)
     {
-        ShowPeekInputPanel(PawType.BackRight);
+        ShowPeekInputPanel(LimbId.LegRight);
     }
 
-    private void ShowPeekInputPanel(PawType pawType)
+    private void ShowPeekInputPanel(LimbId pawType)
     {
         m_selectedPawType = pawType;
 

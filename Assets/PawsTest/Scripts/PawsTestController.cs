@@ -12,17 +12,17 @@ public class PawsTestController : MonoBehaviour
         LizardInput.Instance.PawDirectionChanged += HandlePawDirectionChanged;
     }
 
-    private void HandlePawGriped(PawType pawType)
+    private void HandlePawGriped(LimbId pawType)
     {
         m_paws[(int)pawType].SetGrip(true);
     }
 
-    private void HandlePawReleased(PawType pawType)
+    private void HandlePawReleased(LimbId pawType)
     {
         m_paws[(int)pawType].SetGrip(false);
     }
 
-    private void HandlePawDirectionChanged(PawType pawType, Vector3 direction)
+    private void HandlePawDirectionChanged(LimbId pawType, Vector3 direction)
     {
         m_paws[(int)pawType].SetDirection(direction);
     }
