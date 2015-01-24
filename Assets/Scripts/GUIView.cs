@@ -10,6 +10,9 @@ public class GUIView : MonoBehaviour
 
 	public void RefreshView()
 	{
+		//TODO
+		return;
+
 		for (int playerIndex = 0; playerIndex < m_playerScores.Length; playerIndex++)
 			m_playerScores[playerIndex].text = GameData.scores[playerIndex].ToString();
 	}
