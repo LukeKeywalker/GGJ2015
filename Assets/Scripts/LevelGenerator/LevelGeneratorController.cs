@@ -7,6 +7,7 @@ public class LevelGeneratorController : MonoBehaviour
 {
 	public GameObject m_hexLinePrefab;
 	public HexTile m_hexTilePrefab;
+	public BasePickupItem[] m_itemPrefabs;
 
 	private List<GameObject> m_hexLines;
 
@@ -16,7 +17,7 @@ public class LevelGeneratorController : MonoBehaviour
 
 
 	private int m_initialHeight = 25;
-	private int m_width = 18;
+	private int m_width = 26;
 
 	public static HexTile GetHexByPosition(Vector3 position)
 	{
@@ -28,13 +29,20 @@ public class LevelGeneratorController : MonoBehaviour
 		return null;
 	}
 
+	public void ResetAndFill()
+	{
+		foreach (Transform child in this.transform)
+			Destroy(child.gameObject);
+		FillMap ();
+	}
+
 	private void Awake()
 	{
 		float scale = m_hexTilePrefab.transform.localScale.x;
 		m_hexHeight = 10 * scale;
 		m_dy = 0.75f * m_hexHeight;
 		m_dx = 0.5f * m_hexHeight;
-		FillMap ();
+		ResetAndFill ();
 	}
 	
 	private void Start()
@@ -68,12 +76,21 @@ public class LevelGeneratorController : MonoBehaviour
 			hex.transform.localPosition = new Vector3(count * m_dx, (count % 2) * m_dy, 0);
 			int area = Array.FindLastIndex<int>(GameData.areaHeights, ((x) => { return (height >= x);} ));
 			float[] probabilities = GameData.probabilities[area];
-			if (count < 3 || count > 2 * m_width - 4)
+			if (count < 7 || count > 2 * m_width - 8)
 				hex.hexType = HexTile.HexType.Water;
-			else if (count < 6 || count > 2 * m_width - 7)
+			else if (count < 10 || count > 2 * m_width - 11)
 				hex.hexType = HexTile.HexType.Sand;
 			else
 				hex.hexType = GetRandomTile(probabilities);
+
+			if (UnityEngine.Random.Range(0, 1.0f) > 0.9f)
+			{
+				BasePickupItem item = (BasePickupItem)Instantiate (m_itemPrefabs[0]);
+				item.transform.parent = hex.transform;
+				item.transform.localScale = Vector3.one;
+				item.transform.localRotation = Quaternion.Euler(0, 180, 0);
+				item.transform.localPosition = new Vector3(0, 0, -10);
+			}
 		}
 	}
 
@@ -90,5 +107,9 @@ public class LevelGeneratorController : MonoBehaviour
 		Debug.Log (sum);
 		throw new UnityException("Probabilities don't sum");
 	}
-	
+
+	private void Update()
+	{
+
+	}
 }
