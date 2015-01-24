@@ -12,11 +12,11 @@ public class LevelGeneratorController : MonoBehaviour
 	private List<GameObject> m_hexLines;
 
 	private float m_hexHeight = 10;
-	private float m_dy = 5.0f;
-	private float m_dx = 7.5f;
+	private float m_dy = 7.5f;
+	private float m_dx = 5.0f;
 
 
-	private int m_initialHeight = 100;
+	private int m_initialHeight = 150;
 	private int m_width = 18;
 	
 	private void Start()
@@ -33,7 +33,7 @@ public class LevelGeneratorController : MonoBehaviour
 			container.transform.parent = this.transform;
 			container.transform.localScale = Vector3.one;
 			container.transform.localRotation = Quaternion.identity;
-			container.transform.localPosition = new Vector3(0, m_hexHeight * count, 0);
+			container.transform.localPosition = new Vector3(0, 1.5f * m_hexHeight * count, 0);
 			m_hexLines.Add(container);
 			FillLine(container, count);
 		}
@@ -41,7 +41,7 @@ public class LevelGeneratorController : MonoBehaviour
 
 	private void FillLine(GameObject line, int height)
 	{
-		for (int count = 0; count < m_width; count ++)
+		for (int count = 0; count < 2*m_width; count ++)
 		{
 			HexTile hex = (HexTile)Instantiate (m_hexTilePrefab);
 			hex.transform.parent = line.transform;
@@ -50,7 +50,12 @@ public class LevelGeneratorController : MonoBehaviour
 			hex.transform.localPosition = new Vector3(count * m_dx, (count % 2) * m_dy, 0);
 			int area = Array.FindLastIndex<int>(GameData.areaHeights, ((x) => { return (height >= x);} ));
 			float[] probabilities = GameData.probabilities[area];
-			hex.hexType = GetRandomTile(probabilities);
+			if (count < 3 || count > 2 * m_width - 4)
+				hex.hexType = HexTile.HexType.Water;
+			else if (count < 6 || count > 2 * m_width - 7)
+				hex.hexType = HexTile.HexType.Sand;
+			else
+				hex.hexType = GetRandomTile(probabilities);
 			hex.renderer.material = m_hexMaterials[(int)hex.hexType];
 		}
 	}
