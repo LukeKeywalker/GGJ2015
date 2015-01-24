@@ -17,8 +17,7 @@ public class Limb : MonoBehaviour
 	private float m_grip = 1.0f;
 	private float m_gripLoseRate = 0.15f;
 	public float m_grippLooseRateMultiplier = 1.0f;
-
-
+	
 	void Awake() {
 		m_rigidbody = GetComponent<Rigidbody2D>();
 		m_line = GetComponent<LineRenderer>();
@@ -30,7 +29,7 @@ public class Limb : MonoBehaviour
 	{
 		set
 		{
-			m_line.SetColors(value, m_colorHold);
+			m_line.SetColors(m_colorHold, value);
 		}
 	}
 
@@ -91,10 +90,6 @@ public class Limb : MonoBehaviour
 		}
 		else
 			Debug.Log("ignoring on hand grab event");
-	}
-
-	public void Action(Vector2 normalizedDirection)
-	{
 	}
 
 	private float reaction

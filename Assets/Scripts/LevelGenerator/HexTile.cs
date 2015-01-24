@@ -19,6 +19,8 @@ public class HexTile : MonoBehaviour
 		Lava
 	}
 
+	public ParticleSystem m_looseRockGrabParticles;
+
 	public struct HexLogic
 	{
 		//acceleration modifier when hand grabs
@@ -42,6 +44,7 @@ public class HexTile : MonoBehaviour
 	public Material[] m_hexMaterials;
 
 	private Dictionary<HexType, Action<Transform>> m_grabEffects;
+	private Vector3 m_startingPosition;
 
 	private Dictionary<HexType, Action<Transform>> m_hoverEffects;
 
@@ -54,8 +57,17 @@ public class HexTile : MonoBehaviour
 		get { return m_hexType; }
 		set 
 		{ 
+
+
 			m_hexType = value; 
-			m_model.renderer.material = m_hexMaterials[(int)value];
+			if (value == HexType.Water)
+			{
+				m_model.SetActive(false);
+			}
+			else
+			{
+				m_model.renderer.material = m_hexMaterials[(int)value];
+			}
 			m_logic = GameData.hexesLogic[value];
 			m_logic.onHandGrabs = m_grabEffects[value];
 		}
@@ -131,10 +143,27 @@ public class HexTile : MonoBehaviour
 		};
 	}
 
+	private void Start()
+	{
+		m_startingPosition = transform.localPosition;
+	}
+
 	private void Update()
 	{
 		if (m_grabbingHand != null)
 			UpdateGrabbedHand();
+		else
+		{
+			UpdateEmpty();
+		}
+	}
+
+	private void UpdateEmpty()
+	{
+		if (hexType == HexType.Rocks)
+		{
+			transform.localPosition = m_startingPosition;
+		}
 	}
 
 	private void UpdateGrabbedHand()
@@ -156,8 +185,15 @@ public class HexTile : MonoBehaviour
 
 	private IEnumerator RockFallOffCoroutine()
 	{
+		m_looseRockGrabParticles.Play();
 		while (m_handGrabTime < GameData.rockLifetime)
+		{
+			Vector2 random = UnityEngine.Random.insideUnitCircle;
+			//transform.position += new Vector3(random.x, random.y) * Time.deltaTime;
 			yield return null;
+		}
+		m_looseRockGrabParticles.Stop();
+
 		hexType = HexType.Water;
 		m_grabbingHand.GetComponent<Limb>().NotifyHandDropped();
 		OnHandDrop ();
