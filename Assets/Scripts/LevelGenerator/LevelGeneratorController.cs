@@ -17,7 +17,7 @@ public class LevelGeneratorController : MonoBehaviour
 
 
 	private int m_initialHeight = 25;
-	private int m_width = 16;
+	private int m_width = 8;
 
 	public static HexTile GetHexByPosition(Vector3 position)
 	{
@@ -76,11 +76,13 @@ public class LevelGeneratorController : MonoBehaviour
 			hex.transform.localPosition = new Vector3(count * m_dx, (count % 2) * m_dy, 0);
 			int area = Array.FindLastIndex<int>(GameData.areaHeights, ((x) => { return (height >= x);} ));
 			float[] probabilities = GameData.probabilities[area];
+			/*
 			if (count < 7 || count > 2 * m_width - 8)
 				hex.hexType = HexTile.HexType.Water;
 			else if (count < 10 || count > 2 * m_width - 11)
 				hex.hexType = HexTile.HexType.Sand;
 			else
+			*/
 				hex.hexType = GetRandomTile(probabilities);
 
 			if (UnityEngine.Random.Range(0, 1.0f) > 0.9f)
