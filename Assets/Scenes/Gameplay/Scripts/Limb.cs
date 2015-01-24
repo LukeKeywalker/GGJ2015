@@ -26,6 +26,14 @@ public class Limb : MonoBehaviour {
 		m_springJoint = GetComponent<SpringJoint2D>();
 	}
 
+	private Color GripIndicator
+	{
+		set
+		{
+			m_line.SetColors(value, m_colorHold);
+		}
+	}
+
 	public void Shoot(Vector2 direction)
 	{
 		//if (m_springJoint.connectedBody == null) return;
@@ -42,7 +50,7 @@ public class Limb : MonoBehaviour {
 	public void Grab()
 	{
 		m_rigidbody.isKinematic = true;
-		renderer.material.color = m_colorHold;
+		GripIndicator = m_colorHold;
 	 //StopCoroutine("GainGrip");
 		StartCoroutine("LooseGrip");
 	}
@@ -72,7 +80,8 @@ public class Limb : MonoBehaviour {
 	{
 		while (true)
 		{
-			renderer.material.color = Color.Lerp(m_colorHold, m_colorTired, 1.0f - m_grip);
+			//renderer.material.color = Color.Lerp(m_colorHold, m_colorTired, 1.0f - m_grip);
+			GripIndicator = Color.Lerp(m_colorHold, m_colorTired, 1.0f - m_grip);
 			m_grip -= m_gripLoseRate * reaction * Time.deltaTime;
 			if (m_grip <= 0.0f)
 			{
@@ -91,7 +100,8 @@ public class Limb : MonoBehaviour {
 	{
 		while (true)
 		{
-			renderer.material.color = Color.Lerp(m_colorHold, m_colorTired, 1.0f - m_grip);
+			//renderer.material.color = Color.Lerp(m_colorHold, m_colorTired, 1.0f - m_grip);
+			GripIndicator = Color.Lerp(m_colorHold, m_colorTired, 1.0f - m_grip);
 			m_grip += 1.0f * m_gripLoseRate * Time.deltaTime;
 			if (m_grip >= 1.0f)
 			{
