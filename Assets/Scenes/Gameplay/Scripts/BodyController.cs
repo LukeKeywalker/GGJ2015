@@ -4,6 +4,7 @@ using System.Collections;
 public class BodyController : MonoBehaviour
 {
 	public Limb[] m_limbs;
+	public ParticleSystem[] m_wounds;
 	private Vector3[] m_pawDirection;
 
 	// Use this for initialization
@@ -16,7 +17,8 @@ public class BodyController : MonoBehaviour
 
 		for (int i = 0; i < 4; ++i)
 		{
-			HandlePawReleased((LimbId)i);
+			HandlePawGriped((LimbId)i);
+			m_limbs[i].Wound = m_wounds[i];
 		}
 	}
 
@@ -32,13 +34,14 @@ public class BodyController : MonoBehaviour
 	{
 		int limb = (int)((LimbId)obj);
 		Vector3 direction = m_pawDirection[limb];
-		m_limbs[limb].Action(new Vector3(direction.x, direction.y));
+		m_limbs[limb].Shoot(m_pawDirection[limb]);
 	}
 
 	void HandlePawGriped (LimbId obj)
 	{
 		int limb = (int)((LimbId)obj);
 		m_limbs[limb].Action(m_pawDirection[limb]);
+		m_limbs[limb].Grab();
 	}
 
 	public void UseLimb(LimbId limb, Vector2 direction)

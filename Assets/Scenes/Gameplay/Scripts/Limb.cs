@@ -9,7 +9,7 @@ public class Limb : MonoBehaviour
 	public Color m_colorTired;
 	public GameObject m_handOpen;
 	public GameObject m_handClosed;
-
+	public ParticleSystem Wound { get; set; }
 	private Rigidbody2D m_rigidbody;
 	private SpringJoint2D m_springJoint;
 	private Vector3 m_position;
@@ -55,8 +55,9 @@ public class Limb : MonoBehaviour
 		OpenHand();
 	}
 
-	public void Shoot(Vector2 direction)
+	public void Shoot(Vector2 normalizedDirection)
 	{
+		Vector2 direction = 3500.0f * normalizedDirection;
 		if (!m_springJoint.enabled) return;
 
 		StopCoroutine("LooseGrip");
@@ -77,32 +78,23 @@ public class Limb : MonoBehaviour
 
 	public void Grab()
 	{
-		m_rigidbody.isKinematic = true;
 		GripIndicator = m_colorHold;
 		StartCoroutine("LooseGrip");
 		CloseHand();
 
-		try
+
+		HexTile hex = LevelGeneratorController.GetHexByPosition (this.transform.position);
+		if (hex != null)
 		{
-			LevelGeneratorController.GetHexByPosition (this.transform.position).OnHandGrab (this.transform);
+			hex.OnHandGrab (this.transform);
+			m_rigidbody.isKinematic = hex.m_logic.grabable;
 		}
-		catch (System.NullReferenceException)
-		{
+		else
 			Debug.Log("ignoring on hand grab event");
-		}
 	}
 
 	public void Action(Vector2 normalizedDirection)
 	{
-		Vector2 direction = 3500.0f * normalizedDirection;
-		if (m_rigidbody.isKinematic)
-		{
-			Shoot(direction);
-		}
-		else
-		{
-			Grab();
-		}
 	}
 
 	private float reaction
@@ -122,9 +114,8 @@ public class Limb : MonoBehaviour
 			m_grip -= m_gripLoseRate * reaction * Time.deltaTime;
 			if (m_grip <= 0.0f)
 			{
-				//Shoot(Vector2.zero);
-				//m_springJoint.connectedBody = null;
 				m_springJoint.enabled = false;
+				Wound.Play();
 				break;
 			}
 			else {
