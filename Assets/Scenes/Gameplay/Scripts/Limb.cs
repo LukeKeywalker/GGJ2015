@@ -55,8 +55,9 @@ public class Limb : MonoBehaviour
 		OpenHand();
 	}
 
-	public void Shoot(Vector2 direction)
+	public void Shoot(Vector2 normalizedDirection)
 	{
+		Vector2 direction = 3500.0f * normalizedDirection;
 		if (!m_springJoint.enabled) return;
 
 		StopCoroutine("LooseGrip");
@@ -94,15 +95,6 @@ public class Limb : MonoBehaviour
 
 	public void Action(Vector2 normalizedDirection)
 	{
-		Vector2 direction = 3500.0f * normalizedDirection;
-		if (m_rigidbody.isKinematic)
-		{
-			Shoot(direction);
-		}
-		else
-		{
-			Grab();
-		}
 	}
 
 	private float reaction
