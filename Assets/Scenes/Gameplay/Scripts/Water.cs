@@ -41,20 +41,23 @@ public class Water : MonoBehaviour
         float range = 10.0f;
 
         if (Input.GetKeyDown(KeyCode.Space))
-            m_waterSlices[20].Move(20.0f);
+            m_waterSlices[20].Move(0.2f);
 
         for (int i = 0; i < m_waterSlices.Length; i++)
         {
-            int leftIndex;
-            int rightIndex;
-
-            GetMovingWaves(i, out leftIndex, out rightIndex);
-
-            if (leftIndex != -1)
+            if (!m_waterSlices[i].IsMoving)
             {
-                int distance = Mathf.Abs(i - leftIndex);
+                float left = m_waterSlices[i].Top;
+                float right = m_waterSlices[i].Top;
 
-                m_waterSlices[i].Power = m_waterSlices[leftIndex].Power * ((1.0f) - Mathf.Clamp01((float)distance / range));
+                if (i > 0)
+                    left = m_waterSlices[i - 1].Top;
+                if (i < m_waterSlices.Length - 1)
+                    right = m_waterSlices[i + 1].Top;
+
+                float velocity = m_waterSlices[i].SmoothDampVelocity;
+                m_waterSlices[i].Top = Mathf.SmoothDamp(m_waterSlices[i].Top, (left + right) / 2.0f, ref velocity, 0.001f);
+                m_waterSlices[i].SmoothDampVelocity = velocity;
             }
         }
 	}

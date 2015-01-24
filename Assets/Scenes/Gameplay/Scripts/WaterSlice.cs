@@ -8,6 +8,12 @@ public class WaterSlice : MonoBehaviour
     private float m_top;
     private float m_time;
 
+    public float SmoothDampVelocity
+    {
+        get;
+        set;
+    }
+
     public bool IsMoving
     {
         get { return m_isMoveing; }
@@ -33,15 +39,15 @@ public class WaterSlice : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-        //if (m_isMoveing)
+        if (m_isMoveing)
         {
-            m_top = Mathf.Sin(m_time) * m_power * Time.deltaTime;
+            m_top = Mathf.Sin(m_time) * m_power;
 
-            m_power -= Time.deltaTime * 20.0f;
+            m_power -= Time.deltaTime * 0.05f;
             if (m_power < 0.0f)
                 m_power = m_power = 0.0f;
 
-            m_time += Time.deltaTime * 10.0f;
+            m_time += Time.deltaTime * 5.0f;
         }
 
         Vector3 position = transform.position;
