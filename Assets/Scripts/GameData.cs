@@ -20,15 +20,15 @@ public class GameData
 
 	public static Dictionary<HexTile.HexType, HexTile.HexLogic> hexesLogic = new Dictionary<HexTile.HexType, HexTile.HexLogic> ()
 	{
-		{ HexTile.HexType.Dirt, new HexTile.HexLogic(-1, 0) },
-		{ HexTile.HexType.Grass, new HexTile.HexLogic(-1, 0) },
-		{ HexTile.HexType.Ice, new HexTile.HexLogic(-1, 0) },
-		{ HexTile.HexType.Lava, new HexTile.HexLogic(-1, 0) },
-		{ HexTile.HexType.Rocks, new HexTile.HexLogic(-1, 0) },
-		{ HexTile.HexType.Sand, new HexTile.HexLogic(-1, 0) },
-		{ HexTile.HexType.Spikes, new HexTile.HexLogic(-1, 0) },
-		{ HexTile.HexType.Tard, new HexTile.HexLogic(-1, 0) },
-		{ HexTile.HexType.Trees, new HexTile.HexLogic(-1, 0) },
-		{ HexTile.HexType.Water, new HexTile.HexLogic(-1, 0) },
+		{ HexTile.HexType.Dirt, new HexTile.HexLogic(1, 0) },
+		{ HexTile.HexType.Grass, new HexTile.HexLogic(1, 0) },
+		{ HexTile.HexType.Ice, new HexTile.HexLogic(1, 0) },
+		{ HexTile.HexType.Lava, new HexTile.HexLogic(1, 0) },
+		{ HexTile.HexType.Rocks, new HexTile.HexLogic(1, 0) },
+		{ HexTile.HexType.Sand, new HexTile.HexLogic(1, 0) },
+		{ HexTile.HexType.Spikes, new HexTile.HexLogic(1, 0) },
+		{ HexTile.HexType.Tard, new HexTile.HexLogic(1, 0) },
+		{ HexTile.HexType.Trees, new HexTile.HexLogic(0.5f, 0) },
+		{ HexTile.HexType.Water, new HexTile.HexLogic(1, 0) },
 	};
 }
