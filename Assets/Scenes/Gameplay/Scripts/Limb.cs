@@ -21,7 +21,7 @@ public class Limb : MonoBehaviour {
 	public float m_grippLooseRateMultiplier = 1.0f;
 
 	// Use this for initialization
-	void Start () {
+	void Awake() {
 		m_rigidbody = GetComponent<Rigidbody2D>();
 		m_line = GetComponent<LineRenderer>();
 		m_position = transform.position;
@@ -63,14 +63,13 @@ public class Limb : MonoBehaviour {
 	{
 		m_rigidbody.isKinematic = true;
 		GripIndicator = m_colorHold;
-	 //StopCoroutine("GainGrip");
 		StartCoroutine("LooseGrip");
 		CloseHand();
 	}
 
 	public void Action(Vector2 normalizedDirection)
 	{
-		Vector2 direction = 7500.0f * normalizedDirection;
+		Vector2 direction = 3500.0f * normalizedDirection;
 		if (m_rigidbody.isKinematic)
 		{
 			Shoot(direction);
