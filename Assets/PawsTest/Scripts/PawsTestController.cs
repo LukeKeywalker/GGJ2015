@@ -9,6 +9,7 @@ public class PawsTestController : MonoBehaviour
     {
         LizardInput.Instance.PawGriped += HandlePawGriped;
         LizardInput.Instance.PawReleased += HandlePawReleased;
+        LizardInput.Instance.PawDirectionChanged += HandlePawDirectionChanged;
     }
 
     private void HandlePawGriped(PawType pawType)
@@ -19,5 +20,10 @@ public class PawsTestController : MonoBehaviour
     private void HandlePawReleased(PawType pawType)
     {
         m_paws[(int)pawType].SetGrip(false);
+    }
+
+    private void HandlePawDirectionChanged(PawType pawType, Vector3 direction)
+    {
+        m_paws[(int)pawType].SetDirection(direction);
     }
 }

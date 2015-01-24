@@ -24,8 +24,8 @@ public class SetupController : MonoBehaviour
         m_backLeftInputType.Clicked += BackLeftInputTypeControlClicked;
         m_backRightInputType.Clicked += BackRightInputTypeControlClicked;
 
-        SetInputType(PawType.FrontLeft, InputType.Pad1Left);
-        SetInputType(PawType.FrontRight, InputType.Pad1Right);
+        SetInputType(PawType.FrontLeft, InputType.Wasd);
+        SetInputType(PawType.FrontRight, InputType.Arrows);
         SetInputType(PawType.BackLeft, InputType.Pad2Left);
         SetInputType(PawType.BackRight, InputType.Pad2Right);
     }
