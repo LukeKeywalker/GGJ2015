@@ -24,6 +24,7 @@ public class LevelGeneratorController : MonoBehaviour
 		if (Physics.Raycast(position, -Vector3.forward, out hit))
 			return hit.transform.GetComponent<HexTile>();
 
+		Debug.LogError ("No hex under hand");
 		return null;
 	}
 	
