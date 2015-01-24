@@ -36,5 +36,7 @@ public class InputTypeControl : MonoBehaviour
     private void SetupIcon()
     {
         m_icon.spriteName = InputTypeHelpers.GetIconByType(m_inputType);
+        m_button.gameObject.GetComponent<UIButton>().pressedSprite = m_icon.spriteName;
+        m_button.gameObject.GetComponent<UIButton>().hoverSprite = m_icon.spriteName;
     }
 }
