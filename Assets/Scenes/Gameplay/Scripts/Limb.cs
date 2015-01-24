@@ -1,10 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Limb : MonoBehaviour {
-
-
-
+public class Limb : MonoBehaviour 
+{	
 	public Transform m_limbSlot;
 	public Color m_colorHold;
 	public Color m_colorLet;
@@ -19,9 +17,11 @@ public class Limb : MonoBehaviour {
 	private float m_grip = 1.0f;
 	private float m_gripLoseRate = 0.15f;
 	public float m_grippLooseRateMultiplier = 1.0f;
+	private LevelGeneratorController m_levelGenerator;
 
 	// Use this for initialization
 	void Start () {
+		m_levelGenerator = FindObjectOfType<LevelGeneratorController> ();
 		m_rigidbody = GetComponent<Rigidbody2D>();
 		m_line = GetComponent<LineRenderer>();
 		m_position = transform.position;
@@ -57,6 +57,8 @@ public class Limb : MonoBehaviour {
 		m_rigidbody.isKinematic = false;
 		m_rigidbody.AddForce(direction);
 		OpenHand();
+
+		m_levelGenerator.GetHexByPosition (this.transform.position).OnHandDrop ();
 	}
 
 	public void Grab()
@@ -66,6 +68,8 @@ public class Limb : MonoBehaviour {
 	 //StopCoroutine("GainGrip");
 		StartCoroutine("LooseGrip");
 		CloseHand();
+
+		m_levelGenerator.GetHexByPosition (this.transform.position).OnHandGrab (this.transform);
 	}
 
 	public void Action(Vector2 normalizedDirection)
