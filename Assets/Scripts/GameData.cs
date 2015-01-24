@@ -5,15 +5,15 @@ using System.Collections.Generic;
 public class GameData  
 {
 	//time for a rock to fall off while grabbed
-	public static float rockLifetime = 2.5f;
+	public static readonly float rockLifetime = 2.5f;
 
-	public static int[] areaHeights = new int[]
+	public static readonly int[] areaHeights = new int[]
 	{
 		0, 5, 10, 15, 20, 25
 	};
 
 	//Dirt, Trees, Grass, Rocks, Sand, Water, Ice, Spikes, Tard, Lava
-	public static float[][] probabilities = new float[][]
+	public static readonly float[][] probabilities = new float[][]
 	{
 		/*new float[] { 0.5f, 0.0f, 0.5f, 0f, 0f, 0f, 0f, 0f, 0f, 0f},
 		new float[] { 0.4f, 0.0f, 0.3f, 0.3f, 0.0f, 0f, 0f, 0f, 0f, 0f},
@@ -29,7 +29,7 @@ public class GameData
 		new float[] { 0.24f, 0f, 0f, 0.27f, 0.1f, 0f, 0.2f, 0.06f, 0.08f, 0.05f }
 	};
 
-	public static Dictionary<HexTile.HexType, HexTile.HexLogic> hexesLogic = new Dictionary<HexTile.HexType, HexTile.HexLogic> ()
+	public static readonly Dictionary<HexTile.HexType, HexTile.HexLogic> hexesLogic = new Dictionary<HexTile.HexType, HexTile.HexLogic> ()
 	{
 
 		{ HexTile.HexType.Dirt, new HexTile.HexLogic(0.9f, true) },
@@ -43,4 +43,9 @@ public class GameData
 		{ HexTile.HexType.Trees, new HexTile.HexLogic(1, true) },
 		{ HexTile.HexType.Water, new HexTile.HexLogic(1, false) },
 	};
+
+
+	//DYNAMIC DATA
+	public static int[] scores = new int[] {0, 0, 0, 0};
+	
 }

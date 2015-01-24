@@ -9,6 +9,10 @@ public class Limb : MonoBehaviour
 	public Color m_colorTired;
 	public GameObject m_handOpen;
 	public GameObject m_handClosed;
+	public int m_id;
+
+	private GUIView m_gui;
+
 	public ParticleSystem Wound { get; set; }
 	private Rigidbody2D m_rigidbody;
 	private SpringJoint2D m_springJoint;
@@ -17,8 +21,10 @@ public class Limb : MonoBehaviour
 	private float m_grip = 1.0f;
 	private float m_gripLoseRate = 0.15f;
 	public float m_grippLooseRateMultiplier = 1.0f;
-	
+
+
 	void Awake() {
+		m_gui = FindObjectOfType<GUIView> ();
 		m_rigidbody = GetComponent<Rigidbody2D>();
 		m_line = GetComponent<LineRenderer>();
 		m_position = transform.position;
@@ -147,6 +153,18 @@ public class Limb : MonoBehaviour
 		{
 			m_line.SetPosition(0, Vector2.zero);
 			m_line.SetPosition(1, Vector3.zero);
+		}
+	}
+
+	void OnTriggerEnter2D(Collider2D col)
+	{
+		BasePickupItem item = col.transform.parent.GetComponent<BasePickupItem> ();
+		if (item != null)
+		{
+			GameData.scores[m_id] += item.scoreValue;
+			m_gui.RefreshView();
+			item.onPickedUp(this.transform);
+			Destroy(item.gameObject);
 		}
 	}
 }
