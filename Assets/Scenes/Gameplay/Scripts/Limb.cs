@@ -1,10 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Limb : MonoBehaviour {
-
-
-
+public class Limb : MonoBehaviour 
+{	
 	public Transform m_limbSlot;
 	public Color m_colorHold;
 	public Color m_colorLet;
@@ -20,7 +18,7 @@ public class Limb : MonoBehaviour {
 	private float m_gripLoseRate = 0.15f;
 	public float m_grippLooseRateMultiplier = 1.0f;
 
-	// Use this for initialization
+
 	void Awake() {
 		m_rigidbody = GetComponent<Rigidbody2D>();
 		m_line = GetComponent<LineRenderer>();
@@ -48,6 +46,15 @@ public class Limb : MonoBehaviour {
 		m_handClosed.SetActive(true);
 	}
 
+	public void NotifyHandDropped()
+	{
+		if (!m_springJoint.enabled) return;
+		StopCoroutine("LooseGrip");
+		m_grip = 1.0f;
+		m_rigidbody.isKinematic = false;
+		OpenHand();
+	}
+
 	public void Shoot(Vector2 direction)
 	{
 		if (!m_springJoint.enabled) return;
@@ -57,6 +64,15 @@ public class Limb : MonoBehaviour {
 		m_rigidbody.isKinematic = false;
 		m_rigidbody.AddForce(direction);
 		OpenHand();
+
+		try
+		{
+			LevelGeneratorController.GetHexByPosition (this.transform.position).OnHandDrop ();
+		}
+		catch (System.NullReferenceException)
+		{
+			Debug.Log("ignoring hand released event");
+		}
 	}
 
 	public void Grab()
@@ -65,6 +81,15 @@ public class Limb : MonoBehaviour {
 		GripIndicator = m_colorHold;
 		StartCoroutine("LooseGrip");
 		CloseHand();
+
+		try
+		{
+			LevelGeneratorController.GetHexByPosition (this.transform.position).OnHandGrab (this.transform);
+		}
+		catch (System.NullReferenceException)
+		{
+			Debug.Log("ignoring on hand grab event");
+		}
 	}
 
 	public void Action(Vector2 normalizedDirection)

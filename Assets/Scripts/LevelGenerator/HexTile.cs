@@ -53,11 +53,19 @@ public class HexTile : MonoBehaviour
 	public HexType hexType
 	{
 		get { return m_hexType; }
-		set { m_hexType = value; m_model.renderer.material = m_hexMaterials[(int)m_hexType]; }
+		set 
+		{ 
+			m_hexType = value; 
+			m_model.renderer.material = m_hexMaterials[(int)value];
+			m_logic = GameData.hexesLogic[value];
+			m_logic.onHandGrabs = m_grabEffects[value];
+		}
 	}
 
 	private HexType m_hexType;
 
+	private float m_grabbingHandVelocity = 0.0f;
+	private float m_slideAcceleration = 1.0f;
 	private float m_handGrabTime = 0.0f;
 
 	public void OnHandEnter(Transform hand)
@@ -121,6 +129,28 @@ public class HexTile : MonoBehaviour
 			{ HexType.Trees, (Transform t) => {}},
 			{ HexType.Water, (Transform t) => {}},
 		};
+	}
+
+	private void Update()
+	{
+		if (m_grabbingHand != null)
+			UpdateGrabbedHand();
+	}
+
+	private void UpdateGrabbedHand()
+	{
+		m_grabbingHandVelocity += (1 - m_logic.grip) * m_slideAcceleration * Time.deltaTime;
+		Vector3 oldPosition = m_grabbingHand.transform.position;
+		float newY = oldPosition.y - m_grabbingHandVelocity * Time.deltaTime;
+		m_grabbingHand.transform.position = new Vector3 (oldPosition.x, 
+		                                                 newY,
+		                                                 oldPosition.z);
+		if (LevelGeneratorController.GetHexByPosition(m_grabbingHand.transform.position) != this)
+		{
+			m_grabbingHand.GetComponent<Limb>().NotifyHandDropped();
+			OnHandDrop ();
+		}
+
 	}
 
 	private IEnumerator RockFallOffCoroutine()

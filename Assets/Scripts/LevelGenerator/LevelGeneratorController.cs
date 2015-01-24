@@ -18,13 +18,13 @@ public class LevelGeneratorController : MonoBehaviour
 	private int m_initialHeight = 25;
 	private int m_width = 18;
 
-	public HexTile GetHexByPosition(Vector3 position)
+	public static HexTile GetHexByPosition(Vector3 position)
 	{
 		RaycastHit hit;
 		if (Physics.Raycast(position, Vector3.forward, out hit))
 			return hit.transform.parent.GetComponent<HexTile>();
 
-		Debug.LogError ("No hex under hand");
+		Debug.LogWarning ("No hex under hand");
 		return null;
 	}
 
@@ -34,11 +34,12 @@ public class LevelGeneratorController : MonoBehaviour
 		m_hexHeight = 10 * scale;
 		m_dy = 0.75f * m_hexHeight;
 		m_dx = 0.5f * m_hexHeight;
+		FillMap ();
 	}
 	
 	private void Start()
 	{
-		FillMap ();
+
 	}
 
 	private void FillMap ()
