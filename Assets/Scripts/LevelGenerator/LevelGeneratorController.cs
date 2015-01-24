@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System;
 
 public class LevelGeneratorController : MonoBehaviour 
 {
@@ -34,11 +35,11 @@ public class LevelGeneratorController : MonoBehaviour
 			container.transform.localRotation = Quaternion.identity;
 			container.transform.localPosition = new Vector3(0, m_hexHeight * count, 0);
 			m_hexLines.Add(container);
-			FillLine(container);
+			FillLine(container, count);
 		}
 	}
 
-	private void FillLine(GameObject line)
+	private void FillLine(GameObject line, int height)
 	{
 		for (int count = 0; count < m_width; count ++)
 		{
@@ -47,9 +48,25 @@ public class LevelGeneratorController : MonoBehaviour
 			hex.transform.localScale = Vector3.one;
 			hex.transform.localRotation = Quaternion.Euler(new Vector3(-90, 0, 0));
 			hex.transform.localPosition = new Vector3(count * m_dx, (count % 2) * m_dy, 0);
-			hex.hexType = (Random.Range(0, 1.0f)) > 0.5f ? HexTile.HexType.Blue : HexTile.HexType.Green;
+			int area = Array.FindLastIndex<int>(GameData.areaHeights, ((x) => { return (height >= x);} ));
+			float[] probabilities = GameData.probabilities[area];
+			hex.hexType = GetRandomTile(probabilities);
 			hex.renderer.material = m_hexMaterials[(int)hex.hexType];
 		}
+	}
+
+	private HexTile.HexType GetRandomTile(float[] probabilities)
+	{
+		float random = UnityEngine.Random.Range (0.0f, 1.0f);
+		float sum = 0;
+		for (int i = 0; i < probabilities.Length; i++)
+		{
+			sum += probabilities[i];
+			if (random < sum)
+				return (HexTile.HexType)i;
+		}
+		Debug.Log (sum);
+		throw new UnityException("Probabilities don't sum");
 	}
 	
 }

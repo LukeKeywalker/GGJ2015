@@ -5,8 +5,16 @@ public class HexTile : MonoBehaviour
 {
 	public enum HexType
 	{
-		Blue,
-		Green
+		Dirt,
+		Trees,
+		Grass,
+		Rocks,
+		Sand,
+		Water,
+		Ice,
+		Spikes,
+		Tard,
+		Lava
 	}
 
 	public HexType hexType;

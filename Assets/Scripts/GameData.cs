@@ -5,7 +5,7 @@ public class GameData
 {
 	public static int[] areaHeights = new int[]
 	{
-		0, 30, 60, 90, 120
+		0, 30, 60, 90, 120, 150
 	};
 
 	public static float[][] probabilities = new float[][]
