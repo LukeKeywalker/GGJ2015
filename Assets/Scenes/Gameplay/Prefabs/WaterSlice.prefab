@@ -126,6 +126,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a365d7acae93ef54189736540b2f7a49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_particles: {fileID: 19800000}
 --- !u!198 &19800000
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -136,14 +137,14 @@ ParticleSystem:
   startDelay: 0
   speed: 1
   randomSeed: 0
-  looping: 1
+  looping: 0
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   moveWithTransform: 0
   InitialModule:
     enabled: 1
     startLifetime:
-      scalar: 1
+      scalar: .600000024
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -166,7 +167,7 @@ ParticleSystem:
         m_PostInfinity: 2
       minMaxState: 3
     startSpeed:
-      scalar: 1.60000002
+      scalar: 1.10000002
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -181,7 +182,7 @@ ParticleSystem:
         serializedVersion: 2
         m_Curve:
         - time: 0
-          value: .5
+          value: 0
           inSlope: 0
           outSlope: 0
           tangentMode: 0
@@ -283,7 +284,7 @@ ParticleSystem:
         rgba: 4294967295
       minMaxState: 0
     startSize:
-      scalar: .0299999993
+      scalar: .0199999996
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -485,7 +486,7 @@ ParticleSystem:
       maxGradient:
         key0:
           serializedVersion: 2
-          rgba: 4294967295
+          rgba: 4294566305
         key1:
           serializedVersion: 2
           rgba: 16777215
