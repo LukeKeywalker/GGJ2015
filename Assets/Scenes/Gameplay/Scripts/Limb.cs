@@ -77,19 +77,19 @@ public class Limb : MonoBehaviour
 
 	public void Grab()
 	{
-		m_rigidbody.isKinematic = true;
 		GripIndicator = m_colorHold;
 		StartCoroutine("LooseGrip");
 		CloseHand();
 
-		try
+
+		HexTile hex = LevelGeneratorController.GetHexByPosition (this.transform.position);
+		if (hex != null)
 		{
-			LevelGeneratorController.GetHexByPosition (this.transform.position).OnHandGrab (this.transform);
+			hex.OnHandGrab (this.transform);
+			m_rigidbody.isKinematic = hex.m_logic.grabable;
 		}
-		catch (System.NullReferenceException)
-		{
+		else
 			Debug.Log("ignoring on hand grab event");
-		}
 	}
 
 	public void Action(Vector2 normalizedDirection)
