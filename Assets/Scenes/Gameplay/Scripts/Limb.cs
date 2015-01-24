@@ -9,7 +9,7 @@ public class Limb : MonoBehaviour
 	public Color m_colorTired;
 	public GameObject m_handOpen;
 	public GameObject m_handClosed;
-
+	public ParticleSystem Wound { get; set; }
 	private Rigidbody2D m_rigidbody;
 	private SpringJoint2D m_springJoint;
 	private Vector3 m_position;
@@ -122,9 +122,8 @@ public class Limb : MonoBehaviour
 			m_grip -= m_gripLoseRate * reaction * Time.deltaTime;
 			if (m_grip <= 0.0f)
 			{
-				//Shoot(Vector2.zero);
-				//m_springJoint.connectedBody = null;
 				m_springJoint.enabled = false;
+				Wound.Play();
 				break;
 			}
 			else {

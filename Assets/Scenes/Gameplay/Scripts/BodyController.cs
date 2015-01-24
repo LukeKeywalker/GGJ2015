@@ -4,6 +4,7 @@ using System.Collections;
 public class BodyController : MonoBehaviour
 {
 	public Limb[] m_limbs;
+	public ParticleSystem[] m_wounds;
 	private Vector3[] m_pawDirection;
 
 	// Use this for initialization
@@ -17,6 +18,7 @@ public class BodyController : MonoBehaviour
 		for (int i = 0; i < 4; ++i)
 		{
 			HandlePawReleased((LimbId)i);
+			m_limbs[i].Wound = m_wounds[i];
 		}
 	}
 

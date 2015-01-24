@@ -8,6 +8,7 @@ public class LizardInput : MonoBehaviour
     public event System.Action<LimbId> PawGriped;
     public event System.Action<LimbId> PawReleased;
     public event System.Action<LimbId, Vector3> PawDirectionChanged;
+	public ParticleSystem m_wound;
 
     private InputType[] m_pawsBinding;
     private PawState[] m_pawsPrevStates;
