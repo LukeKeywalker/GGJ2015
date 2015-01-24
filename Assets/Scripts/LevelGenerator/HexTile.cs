@@ -24,16 +24,15 @@ public class HexTile : MonoBehaviour
 		//acceleration modifier when hand grabs
 		public float grip;
 
-		//acceleration modifier when hand hovers
-		public float slide;
+		public bool grabable;
 
 		public Action<Transform> onHandHovers;
 		public Action<Transform> onHandGrabs;
 
-		public HexLogic(float _grip, float _slide)
+		public HexLogic(float _grip, bool _grabable)
 		{
 			grip = _grip;
-			slide = _slide;
+			grabable = _grabable;
 			onHandHovers = (Transform t) => {};
 			onHandGrabs = (Transform t) => {};
 		}
@@ -98,6 +97,7 @@ public class HexTile : MonoBehaviour
 	public void OnHandDrop()
 	{
 		m_grabbingHand = null;
+		StopCoroutine ("RockFallOffCoroutine");
 	}
 
 	private void Awake()
@@ -113,7 +113,7 @@ public class HexTile : MonoBehaviour
 			{ HexType.Spikes, (Transform t) => {}},
 			{ HexType.Tard, (Transform t) => {}},
 			{ HexType.Trees, (Transform t) => {}},
-			{ HexType.Water, (Transform t) => {}}
+			{ HexType.Water, (Transform t) => { OnHandDrop (); }}
 		};
 
 		m_hoverEffects = new Dictionary<HexType, Action<Transform>> ()
@@ -139,6 +139,7 @@ public class HexTile : MonoBehaviour
 
 	private void UpdateGrabbedHand()
 	{
+		m_handGrabTime += Time.deltaTime;
 		m_grabbingHandVelocity += (1 - m_logic.grip) * m_slideAcceleration * Time.deltaTime;
 		Vector3 oldPosition = m_grabbingHand.transform.position;
 		float newY = oldPosition.y - m_grabbingHandVelocity * Time.deltaTime;
@@ -155,8 +156,10 @@ public class HexTile : MonoBehaviour
 
 	private IEnumerator RockFallOffCoroutine()
 	{
-		while (m_handGrabTime < 5.0f)
+		while (m_handGrabTime < GameData.rockLifetime)
 			yield return null;
 		hexType = HexType.Water;
+		m_grabbingHand.GetComponent<Limb>().NotifyHandDropped();
+		OnHandDrop ();
 	}	
 }
