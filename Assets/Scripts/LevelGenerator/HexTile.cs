@@ -53,7 +53,13 @@ public class HexTile : MonoBehaviour
 	public HexType hexType
 	{
 		get { return m_hexType; }
-		set { m_hexType = value; m_model.renderer.material = m_hexMaterials[(int)m_hexType]; }
+		set 
+		{ 
+			m_hexType = value; 
+			m_model.renderer.material = m_hexMaterials[(int)value];
+			m_logic = GameData.hexesLogic[value];
+			m_logic.onHandGrabs = m_grabEffects[value];
+		}
 	}
 
 	private HexType m_hexType;
@@ -135,9 +141,11 @@ public class HexTile : MonoBehaviour
 	{
 		m_grabbingHandVelocity += (1 - m_logic.grip) * m_slideAcceleration * Time.deltaTime;
 		Vector3 oldPosition = m_grabbingHand.transform.position;
+		float newY = oldPosition.y - m_grabbingHandVelocity * Time.deltaTime;
 		m_grabbingHand.transform.position = new Vector3 (oldPosition.x, 
-		                                                oldPosition.y - m_grabbingHandVelocity * Time.deltaTime,
-		                                                oldPosition.z);
+		                                                 newY,
+		                                                 oldPosition.z);
+
 	}
 
 	private IEnumerator RockFallOffCoroutine()

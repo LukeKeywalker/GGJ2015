@@ -48,6 +48,15 @@ public class Limb : MonoBehaviour
 		m_handClosed.SetActive(true);
 	}
 
+	public void NotifyHandDropped()
+	{
+		if (!m_springJoint.enabled) return;
+		StopCoroutine("LooseGrip");
+		m_grip = 1.0f;
+		m_rigidbody.isKinematic = false;
+		OpenHand();
+	}
+
 	public void Shoot(Vector2 direction)
 	{
 		if (!m_springJoint.enabled) return;
@@ -58,7 +67,14 @@ public class Limb : MonoBehaviour
 		m_rigidbody.AddForce(direction);
 		OpenHand();
 
-		m_levelGenerator.GetHexByPosition (this.transform.position).OnHandDrop ();
+		try
+		{
+			m_levelGenerator.GetHexByPosition (this.transform.position).OnHandDrop ();
+		}
+		catch (System.NullReferenceException)
+		{
+			Debug.Log("ignoring hand released event");
+		}
 	}
 
 	public void Grab()
@@ -68,7 +84,14 @@ public class Limb : MonoBehaviour
 		StartCoroutine("LooseGrip");
 		CloseHand();
 
-		m_levelGenerator.GetHexByPosition (this.transform.position).OnHandGrab (this.transform);
+		try
+		{
+			m_levelGenerator.GetHexByPosition (this.transform.position).OnHandGrab (this.transform);
+		}
+		catch (System.NullReferenceException)
+		{
+			Debug.Log("ignoring on hand grab event");
+		}
 	}
 
 	public void Action(Vector2 normalizedDirection)
