@@ -13,6 +13,7 @@ public class Limb : MonoBehaviour
 
 	private GUIView m_gui;
 
+	public ParticleSystem Wound { get; set; }
 	private Rigidbody2D m_rigidbody;
 	private SpringJoint2D m_springJoint;
 	private Vector3 m_position;
@@ -20,7 +21,6 @@ public class Limb : MonoBehaviour
 	private float m_grip = 1.0f;
 	private float m_gripLoseRate = 0.15f;
 	public float m_grippLooseRateMultiplier = 1.0f;
-
 
 
 	void Awake() {
@@ -35,7 +35,7 @@ public class Limb : MonoBehaviour
 	{
 		set
 		{
-			m_line.SetColors(value, m_colorHold);
+			m_line.SetColors(m_colorHold, value);
 		}
 	}
 
@@ -60,8 +60,9 @@ public class Limb : MonoBehaviour
 		OpenHand();
 	}
 
-	public void Shoot(Vector2 direction)
+	public void Shoot(Vector2 normalizedDirection)
 	{
+		Vector2 direction = 3500.0f * normalizedDirection;
 		if (!m_springJoint.enabled) return;
 
 		StopCoroutine("LooseGrip");
@@ -97,19 +98,6 @@ public class Limb : MonoBehaviour
 			Debug.Log("ignoring on hand grab event");
 	}
 
-	public void Action(Vector2 normalizedDirection)
-	{
-		Vector2 direction = 3500.0f * normalizedDirection;
-		if (m_rigidbody.isKinematic)
-		{
-			Shoot(direction);
-		}
-		else
-		{
-			Grab();
-		}
-	}
-
 	private float reaction
 	{
 		get
@@ -127,9 +115,8 @@ public class Limb : MonoBehaviour
 			m_grip -= m_gripLoseRate * reaction * Time.deltaTime;
 			if (m_grip <= 0.0f)
 			{
-				//Shoot(Vector2.zero);
-				//m_springJoint.connectedBody = null;
 				m_springJoint.enabled = false;
+				Wound.Play();
 				break;
 			}
 			else {
