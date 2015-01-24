@@ -153,7 +153,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 424673263}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 90, y: 15, z: -40}
+  m_LocalPosition: {x: 80, y: 15, z: -40}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -187,17 +187,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_hexLinePrefab: {fileID: 109214, guid: 7354024c9333644bab69b0fd3360537e, type: 2}
   m_hexTilePrefab: {fileID: 11453216, guid: 11c071a4c149b46fdb8d7025dca841c6, type: 2}
-  m_hexMaterials:
-  - {fileID: 2100000, guid: 89f349151eb4f4b169c41b5edf03f6b1, type: 2}
-  - {fileID: 2100000, guid: 1727201c314ba4773847358bb99085f8, type: 2}
-  - {fileID: 2100000, guid: 5a9d1ec7048144faa85fcc32a2fb4e12, type: 2}
-  - {fileID: 2100000, guid: 5033c3d4cb49943a290082e624a0789d, type: 2}
-  - {fileID: 2100000, guid: 39bc55f27813b4a439017ef1eade54fe, type: 2}
-  - {fileID: 2100000, guid: eacd64151136b49b9b45f08c4342450c, type: 2}
-  - {fileID: 2100000, guid: 1ab19f7f1dfa1434aa8b1b4dca6adc0e, type: 2}
-  - {fileID: 2100000, guid: 794611f209d2d4b79bafb74875ba2d64, type: 2}
-  - {fileID: 2100000, guid: e850b8ff938664b5eb2f179efa03563f, type: 2}
-  - {fileID: 2100000, guid: 92bd238e6d9664bc486c4882fd0cc966, type: 2}
 --- !u!4 &1388942927
 Transform:
   m_ObjectHideFlags: 0

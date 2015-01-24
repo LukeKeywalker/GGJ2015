@@ -7,8 +7,7 @@ public class LevelGeneratorController : MonoBehaviour
 {
 	public GameObject m_hexLinePrefab;
 	public HexTile m_hexTilePrefab;
-	public Material[] m_hexMaterials;
-	
+
 	private List<GameObject> m_hexLines;
 
 	private float m_hexHeight = 10;
@@ -16,8 +15,17 @@ public class LevelGeneratorController : MonoBehaviour
 	private float m_dx = 5.0f;
 
 
-	private int m_initialHeight = 150;
+	private int m_initialHeight = 25;
 	private int m_width = 18;
+
+	public HexTile GetHexByPosition(Vector3 position)
+	{
+		RaycastHit hit;
+		if (Physics.Raycast(position, -Vector3.forward, out hit))
+			return hit.transform.GetComponent<HexTile>();
+
+		return null;
+	}
 	
 	private void Start()
 	{
@@ -56,7 +64,6 @@ public class LevelGeneratorController : MonoBehaviour
 				hex.hexType = HexTile.HexType.Sand;
 			else
 				hex.hexType = GetRandomTile(probabilities);
-			hex.renderer.material = m_hexMaterials[(int)hex.hexType];
 		}
 	}
 
