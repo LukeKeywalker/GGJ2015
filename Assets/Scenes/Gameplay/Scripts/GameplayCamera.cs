@@ -16,6 +16,6 @@ public class GameplayCamera : MonoBehaviour
 	void Update()
     {
         transform.position = Vector3.SmoothDamp(transform.position, m_trackingTarget.position - m_baseShift, ref m_velocity, 0.5f);
-        transform.position = new Vector3(22, transform.position.y, transform.position.z);
+        transform.position = new Vector3(20, transform.position.y, transform.position.z);
 	}
 }
