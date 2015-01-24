@@ -18,7 +18,7 @@ public class LevelGeneratorController : MonoBehaviour
 	private int m_initialHeight = 25;
 	private int m_width = 18;
 
-	public HexTile GetHexByPosition(Vector3 position)
+	public static HexTile GetHexByPosition(Vector3 position)
 	{
 		RaycastHit hit;
 		if (Physics.Raycast(position, Vector3.forward, out hit))

@@ -145,6 +145,11 @@ public class HexTile : MonoBehaviour
 		m_grabbingHand.transform.position = new Vector3 (oldPosition.x, 
 		                                                 newY,
 		                                                 oldPosition.z);
+		if (LevelGeneratorController.GetHexByPosition(m_grabbingHand.transform.position) != this)
+		{
+			m_grabbingHand.GetComponent<Limb>().NotifyHandDropped();
+			OnHandDrop ();
+		}
 
 	}
 

@@ -17,11 +17,9 @@ public class Limb : MonoBehaviour
 	private float m_grip = 1.0f;
 	private float m_gripLoseRate = 0.15f;
 	public float m_grippLooseRateMultiplier = 1.0f;
-	private LevelGeneratorController m_levelGenerator;
 
 
 	void Awake() {
-		m_levelGenerator = FindObjectOfType<LevelGeneratorController> ();
 		m_rigidbody = GetComponent<Rigidbody2D>();
 		m_line = GetComponent<LineRenderer>();
 		m_position = transform.position;
@@ -69,7 +67,7 @@ public class Limb : MonoBehaviour
 
 		try
 		{
-			m_levelGenerator.GetHexByPosition (this.transform.position).OnHandDrop ();
+			LevelGeneratorController.GetHexByPosition (this.transform.position).OnHandDrop ();
 		}
 		catch (System.NullReferenceException)
 		{
@@ -86,7 +84,7 @@ public class Limb : MonoBehaviour
 
 		try
 		{
-			m_levelGenerator.GetHexByPosition (this.transform.position).OnHandGrab (this.transform);
+			LevelGeneratorController.GetHexByPosition (this.transform.position).OnHandGrab (this.transform);
 		}
 		catch (System.NullReferenceException)
 		{
