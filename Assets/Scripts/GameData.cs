@@ -1,11 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class GameData  
 {
 	public static int[] areaHeights = new int[]
 	{
-		0, 30, 60, 90, 120, 150
+		0, 5, 10, 15, 20, 25
 	};
 
 	public static float[][] probabilities = new float[][]
@@ -17,5 +18,17 @@ public class GameData
 		new float[] { 0.15f, 0f, 0f, 0.2f, 0.05f, 0f, 0.2f, 0.1f, 0.15f, 0.15f }
 	};
 
-
+	public static Dictionary<HexTile.HexType, HexTile.HexLogic> hexesLogic = new Dictionary<HexTile.HexType, HexTile.HexLogic> ()
+	{
+		{ HexTile.HexType.Dirt, new HexTile.HexLogic(-1, 0) },
+		{ HexTile.HexType.Grass, new HexTile.HexLogic(-1, 0) },
+		{ HexTile.HexType.Ice, new HexTile.HexLogic(-1, 0) },
+		{ HexTile.HexType.Lava, new HexTile.HexLogic(-1, 0) },
+		{ HexTile.HexType.Rocks, new HexTile.HexLogic(-1, 0) },
+		{ HexTile.HexType.Sand, new HexTile.HexLogic(-1, 0) },
+		{ HexTile.HexType.Spikes, new HexTile.HexLogic(-1, 0) },
+		{ HexTile.HexType.Tard, new HexTile.HexLogic(-1, 0) },
+		{ HexTile.HexType.Trees, new HexTile.HexLogic(-1, 0) },
+		{ HexTile.HexType.Water, new HexTile.HexLogic(-1, 0) },
+	};
 }

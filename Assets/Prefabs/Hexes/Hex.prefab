@@ -82,6 +82,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67a4b6be6dfc84e209c20abb590dec00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_hexMaterials:
+  - {fileID: 2100000, guid: 89f349151eb4f4b169c41b5edf03f6b1, type: 2}
+  - {fileID: 2100000, guid: 1727201c314ba4773847358bb99085f8, type: 2}
+  - {fileID: 2100000, guid: 5a9d1ec7048144faa85fcc32a2fb4e12, type: 2}
+  - {fileID: 2100000, guid: 5033c3d4cb49943a290082e624a0789d, type: 2}
+  - {fileID: 2100000, guid: 39bc55f27813b4a439017ef1eade54fe, type: 2}
+  - {fileID: 2100000, guid: eacd64151136b49b9b45f08c4342450c, type: 2}
+  - {fileID: 2100000, guid: 1ab19f7f1dfa1434aa8b1b4dca6adc0e, type: 2}
+  - {fileID: 2100000, guid: 794611f209d2d4b79bafb74875ba2d64, type: 2}
+  - {fileID: 2100000, guid: e850b8ff938664b5eb2f179efa03563f, type: 2}
+  - {fileID: 2100000, guid: 92bd238e6d9664bc486c4882fd0cc966, type: 2}
+  m_grabbingHand: {fileID: 0}
+  m_hoverHands: []
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
