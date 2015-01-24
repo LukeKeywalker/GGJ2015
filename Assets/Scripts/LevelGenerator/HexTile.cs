@@ -3,14 +3,12 @@ using System.Collections;
 
 public class HexTile : MonoBehaviour 
 {
+	public enum HexType
+	{
+		Blue,
+		Green
+	}
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+	public HexType hexType;
+
 }
