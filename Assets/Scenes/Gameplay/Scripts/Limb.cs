@@ -9,6 +9,8 @@ public class Limb : MonoBehaviour {
 	public Color m_colorHold;
 	public Color m_colorLet;
 	public Color m_colorTired;
+	public GameObject m_handOpen;
+	public GameObject m_handClosed;
 
 	private Rigidbody2D m_rigidbody;
 	private SpringJoint2D m_springJoint;
@@ -34,17 +36,27 @@ public class Limb : MonoBehaviour {
 		}
 	}
 
+	private void OpenHand()
+	{
+		m_handOpen.SetActive(true);
+		m_handClosed.SetActive(false);
+	}
+
+	private void CloseHand()
+	{
+		m_handOpen.SetActive(false);
+		m_handClosed.SetActive(true);
+	}
+
 	public void Shoot(Vector2 direction)
 	{
-		//if (m_springJoint.connectedBody == null) return;
 		if (!m_springJoint.enabled) return;
 
 		StopCoroutine("LooseGrip");
 		m_grip = 1.0f;
-//		StartCoroutine("GainGrip");
 		m_rigidbody.isKinematic = false;
 		m_rigidbody.AddForce(direction);
-		renderer.material.color = m_colorLet;
+		OpenHand();
 	}
 
 	public void Grab()
@@ -53,6 +65,7 @@ public class Limb : MonoBehaviour {
 		GripIndicator = m_colorHold;
 	 //StopCoroutine("GainGrip");
 		StartCoroutine("LooseGrip");
+		CloseHand();
 	}
 
 	public void Action(Vector2 normalizedDirection)
