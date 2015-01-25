@@ -128,10 +128,10 @@ public class HexTile : MonoBehaviour
 			{ HexType.Ice, (Transform t) => {}},
 			{ HexType.Lava, (Transform t) => {}},
 			{ HexType.Sand, (Transform t) => {}},
-			{ HexType.Spikes, (Transform t) => {}},
+			{ HexType.Spikes, DisableLimb},
 			{ HexType.Tard, (Transform t) => {}},
 			{ HexType.Trees, (Transform t) => {}},
-			{ HexType.Water, (Transform t) => { OnHandDrop (); }}
+			{ HexType.Water, (Transform t) => { OnHandDrop(); } }
 		};
 
 		m_hoverEffects = new Dictionary<HexType, Action<Transform>> ()
@@ -189,6 +189,14 @@ public class HexTile : MonoBehaviour
 			OnHandDrop ();
 		}
 
+	}
+
+	private void DisableLimb(Transform limbTransform)
+	{
+		Debug.Log ("disable limb");
+		Limb limb = limbTransform.GetComponent<Limb> ();
+		limb.BrakeLimb ();
+		OnHandDrop ();
 	}
 
 	private IEnumerator RockFallOffCoroutine()

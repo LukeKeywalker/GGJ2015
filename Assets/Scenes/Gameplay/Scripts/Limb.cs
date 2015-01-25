@@ -59,6 +59,11 @@ public class Limb : MonoBehaviour
 		m_handClosed.SetActive(true);
 	}
 
+	public void BrakeLimb()
+	{
+		m_grip = 0.0f;
+	}
+
 	public void NotifyHandDropped()
 	{
 		if (!m_springJoint.enabled) return;
