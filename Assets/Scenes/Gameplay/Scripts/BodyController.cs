@@ -38,6 +38,8 @@ public class BodyController : MonoBehaviour
 	{
 		Debug.Log ("OnLimbBroke");
 		m_numLimbs--;
+		if (m_numLimbs == 0)
+			AudioManager.Instance.GetSoundByName("Wilhelm Scream").Play();
 		Debug.Log ("NumLimbs = " + m_numLimbs.ToString());
 		for (int i = 0; i < 4; i++)
 		{
