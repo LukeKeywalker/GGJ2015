@@ -21,20 +21,20 @@ public class AudioManager : MonoBehaviour
 	{
 		m_soundsFilter = transform.FindChild("Sounds");
 		
-		Sounds.Insect = InitSound("sounds/insect", "Insect");
-		Sounds.Plop = InitSound ("sounds/plop", "Plop");
-		Sounds.RockSlide = InitSound ("sounds/rockslide", "Rock Slide");
-		Sounds.Splash = InitSound ("sounds/splash", "Splash");
-		Sounds.Waterfall = InitSound ("sounds/waterfall", "Waterfall");
-		Sounds.WilhelmScream = InitSound ("sounds/WilhelmScream", "Wilhelm Scream");
-		Sounds.Blood = InitSound ("sounds/blood", "Blood");
+		Sounds.Insect = InitSound("sounds/insect", "Insect", 1.0f);
+		Sounds.Plop = InitSound ("sounds/plop", "Plop", 1.0f);
+		Sounds.RockSlide = InitSound ("sounds/rockslide", "Rock Slide", 1.0f);
+		Sounds.Splash = InitSound ("sounds/splash", "Splash", 1.0f);
+		Sounds.Waterfall = InitSound ("sounds/waterfall", "Waterfall", 0.15f);
+		Sounds.WilhelmScream = InitSound ("sounds/WilhelmScream", "Wilhelm Scream", 1.0f);
+		Sounds.Blood = InitSound ("sounds/blood", "Blood", 1.0f);
 	}
 	
-	private Sound InitSound(string pathInResources, string name, bool loop = false)
+	private Sound InitSound(string pathInResources, string name, float volume, bool loop = false)
 	{
 		Sound sound = (Sound)GameObject.Instantiate(m_soundPrefab);
 		sound.transform.parent = m_soundsFilter;
-		sound.Initialize(pathInResources, loop);
+		sound.Initialize(pathInResources, loop, volume);
 		sound.gameObject.name = name;
 		
 		m_sounds.Add(sound);
@@ -94,10 +94,10 @@ public class AudioManager : MonoBehaviour
 	
 	void Awake()
 	{
-		DontDestroyOnLoad(this);
+		//DontDestroyOnLoad(this);
 		
-		if (m_instance != null)
-			throw new UnityException("AudioManager.Awake() is called second time");
+		//if (m_instance != null)
+//			throw new UnityException("AudioManager.Awake() is called second time");
 		
 		m_instance = this;
 		

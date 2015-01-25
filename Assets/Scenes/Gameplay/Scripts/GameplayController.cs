@@ -29,6 +29,12 @@ public class GameplayController : MonoBehaviour
         GameData.scores[3] = 0;
     }
 
+	void Start()
+	{
+		AudioManager.Instance.PlayMusic ();
+		AudioManager.Instance.GetSoundByName ("Waterfall").Play();
+	}
+
     void Update()
     {
         if (m_maxPoints < m_frogBody.position.y)
@@ -77,6 +83,8 @@ public class GameplayController : MonoBehaviour
             PlayerPrefs.SetInt("record", (int)m_maxPoints);
             PlayerPrefs.Save();
         }
+
+		AudioManager.Instance.GetSoundByName ("Splash").Play();
 
         m_summaryPanel.gameObject.SetActive(true);
 
