@@ -3,6 +3,9 @@ using System.Collections;
 
 public class Limb : MonoBehaviour 
 {	
+	public delegate void LimbBrokeHandler();
+	public LimbBrokeHandler LimbBroke;
+
 	public Transform m_limbSlot;
 	public Color m_colorHold;
 	public Color m_colorLet;
@@ -19,8 +22,10 @@ public class Limb : MonoBehaviour
 	private Vector3 m_position;
 	private LineRenderer m_line;
 	private float m_grip = 1.0f;
-	private float m_gripLoseRate = 0.15f;
+	public float m_gripLoseRate = 0.15f;
 	public float m_grippLooseRateMultiplier = 1.0f;
+	public float m_jumpForce = 3500.0f;
+	public ParticleSystem m_handWound;
 
 
 	void Awake() {
@@ -62,7 +67,7 @@ public class Limb : MonoBehaviour
 
 	public void Shoot(Vector2 normalizedDirection)
 	{
-		Vector2 direction = 3500.0f * normalizedDirection;
+		Vector2 direction = m_jumpForce * normalizedDirection;
 		if (!m_springJoint.enabled) return;
 
 		StopCoroutine("LooseGrip");
@@ -115,9 +120,16 @@ public class Limb : MonoBehaviour
 			m_grip -= m_gripLoseRate * reaction * Time.deltaTime;
 			if (m_grip <= 0.0f)
 			{
+				if (LimbBroke != null && m_springJoint.enabled)
+				{
+					LimbBroke();
+				}
+
 				m_springJoint.enabled = false;
 				Wound.Play();
-				break;
+				m_handWound.Play();
+
+				return false;
 			}
 			else {
 				yield return null;
@@ -154,6 +166,7 @@ public class Limb : MonoBehaviour
 			m_line.SetPosition(0, Vector2.zero);
 			m_line.SetPosition(1, Vector3.zero);
 		}
+
 	}
 
 	void OnTriggerEnter2D(Collider2D col)
