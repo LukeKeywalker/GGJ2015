@@ -22,7 +22,7 @@ public class GameplayController : MonoBehaviour
     void Awake()
     {
 		m_levelGenerator = FindObjectOfType<LevelGeneratorController> ();
-        SetSatate(GameplayState.Playing);
+       
 
         m_maxPoints = 0.0f;
 
@@ -34,7 +34,8 @@ public class GameplayController : MonoBehaviour
 
 	void Start()
 	{
-		AudioManager.Instance.PlayMusic ();
+		SetSatate(GameplayState.Playing);
+//		AudioManager.Instance.PlayMusic ();
 		AudioManager.Instance.GetSoundByName ("Waterfall").Play();
 
 		LizardInput.Instance.StartPressed += HandleStartPressed;
@@ -82,7 +83,11 @@ public class GameplayController : MonoBehaviour
         {
             case GameplayState.Playing:
                 m_summaryPanel.gameObject.SetActive(false);
+				AudioManager.Instance.StopMusic();
                 break;
+			case GameplayState.Summary:
+				AudioManager.Instance.PlayMusic();
+				break;
         }
     }
 

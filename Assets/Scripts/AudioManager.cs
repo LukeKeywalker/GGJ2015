@@ -53,7 +53,7 @@ public class AudioManager : MonoBehaviour
 
 	private Transform m_soundsFilter;
 	
-	private float m_musicVolume = 0.2f;
+	private float m_musicVolume = 0.4f;
 	private float m_soundVolume = 1;
 	
 	private List<Sound> m_sounds = new List<Sound>();
@@ -109,6 +109,11 @@ public class AudioManager : MonoBehaviour
 		m_music.time = timeOffset;
 		m_music.volume = m_musicVolume;
 		m_music.Play();
+	}
+
+	public void StopMusic()
+	{
+		m_music.Stop ();
 	}
 	
 	public Sound GetSoundByName(string soundName)
