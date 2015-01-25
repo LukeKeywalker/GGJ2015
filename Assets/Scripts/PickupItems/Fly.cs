@@ -5,7 +5,7 @@ public class Fly : BasePickupItem
 {
 	private Vector3 m_startPosition;
 	private float m_radius = 10.0f;
-	private float m_velocity = 0.1f;
+	private float m_velocity = 0.03f;
 
 	private float m_timeElapsed = 0.0f;
 
@@ -60,8 +60,8 @@ public class Fly : BasePickupItem
 	private Vector3 GetPosition()
 	{
 		float r = Mathf.Sin (10 * m_velocity * (m_timeElapsed - m_randomPeriodModifier));
-		float x = Mathf.Cos (m_velocity * m_timeElapsed) * r;
-		float y = Mathf.Sin (m_velocity * m_timeElapsed) * (1 - r);
+		float x = Mathf.Cos (m_velocity * m_timeElapsed - m_randomPeriodModifier) * r;
+		float y = Mathf.Sin (m_velocity * m_timeElapsed - m_randomPeriodModifier) * (1 - r);
 //		Debug.Log ((new Vector3 (x, y, m_startPosition.z) * m_radius + m_startPosition).x);
 		return new Vector3 (x, y, 0) * m_radius + m_startPosition;
 	}
