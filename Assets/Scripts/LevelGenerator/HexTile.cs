@@ -47,6 +47,7 @@ public class HexTile : MonoBehaviour
 	private Vector3 m_startingPosition;
 
 	private Dictionary<HexType, Action<Transform>> m_hoverEffects;
+	private bool m_wasTouched;
 
 	public Transform m_grabbingHand;
 	public List<Transform> m_hoverHands;
@@ -100,16 +101,21 @@ public class HexTile : MonoBehaviour
 			m_grabbingHand = hand;
 			m_handGrabTime = 0.0f;
 			if (m_logic.onHandGrabs != null)
+			{
+				m_wasTouched = true;
 				m_logic.onHandGrabs(hand);
+				return true;
+			}
 			return true;
 		}
+
 		return false;
 	}
 
 	public void OnHandDrop()
 	{
 		m_grabbingHand = null;
-		StopCoroutine ("RockFallOffCoroutine");
+		//StopCoroutine ("RockFallOffCoroutine");
 	}
 
 	private void Awake()
@@ -162,7 +168,9 @@ public class HexTile : MonoBehaviour
 	{
 		if (hexType == HexType.Rocks)
 		{
-			transform.localPosition = m_startingPosition;
+			//transform.localPosition = m_startingPosition;
+			if (m_wasTouched)
+				m_handGrabTime += Time.deltaTime;
 		}
 	}
 
@@ -189,13 +197,17 @@ public class HexTile : MonoBehaviour
 		while (m_handGrabTime < GameData.rockLifetime)
 		{
 			Vector2 random = UnityEngine.Random.insideUnitCircle;
-			//transform.position += new Vector3(random.x, random.y) * Time.deltaTime;
+			transform.position += new Vector3(random.x, random.y) * Time.deltaTime *0.7f;
 			yield return null;
 		}
 		m_looseRockGrabParticles.Stop();
 
-		hexType = HexType.Water;
-		m_grabbingHand.GetComponent<Limb>().NotifyHandDropped();
-		OnHandDrop ();
+		//hexType = HexType.Water;
+		rigidbody2D.isKinematic = false;
+		if (m_grabbingHand != null)
+		{
+			m_grabbingHand.GetComponent<Limb>().NotifyHandDropped();
+			OnHandDrop ();
+		}
 	}	
 }
