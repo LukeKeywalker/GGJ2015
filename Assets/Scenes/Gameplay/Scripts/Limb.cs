@@ -62,6 +62,7 @@ public class Limb : MonoBehaviour
 	public void BrakeLimb()
 	{
 		m_grip = 0.0f;
+
 	}
 
 	public void NotifyHandDropped()
@@ -144,6 +145,7 @@ public class Limb : MonoBehaviour
 
 				m_springJoint.enabled = false;
 				Wound.Play();
+				rigidbody2D.isKinematic = false;
 				m_handWound.Play();
 
                 yield return false;
