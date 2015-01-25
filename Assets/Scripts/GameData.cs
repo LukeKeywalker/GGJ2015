@@ -9,7 +9,7 @@ public class GameData
 
 	public static readonly int[] areaHeights = new int[]
 	{
-		0, 10, 20, 30, 40, 50
+		0, 10, 20, 30, 40
 	};
 
 	//Dirt, Trees, Grass, Rocks, Sand, Water, Ice, Spikes, Tard, Lava
@@ -23,8 +23,8 @@ public class GameData
 
 		new float[] { 0.4f, 0.35f, 0.25f, 0f, 0f, 0f, 0f, 0f, 0f, 0f},
 		new float[] { 0.35f, 0.3f, 0.15f, 0.14f, 0f, 0.06f, 0f, 0f, 0f, 0f},
-		new float[] { 0.27f, 0.22f, 0.12f, 0.17f, 0f, 0.12f, 0.1f, 0f, 0f,0f },
-		new float[] { 0.27f, 0.0f, 0f, 0.30f, 0f, 0.17f, 0.16f, 0f, 0f,0f },
+		new float[] { 0.27f, 0.23f, 0.13f, 0.16f, 0f, 0.12f, 0.09f, 0f, 0f,0f },
+		new float[] { 0.27f, 0.0f, 0.08f, 0.30f, 0f, 0.17f, 0.18f, 0f, 0f,0f },
 		new float[] { 0.25f, 0f, 0f, 0.3f, 0f, 0.2f, 0.25f, 0f, 0f, 0f }
 	};
 
