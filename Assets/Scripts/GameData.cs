@@ -21,10 +21,10 @@ public class GameData
 		new float[] { 0.4f, 0.0f, 0.3f, 0.3f, 0.0f, 0f, 0f, 0f, 0f, 0f},
 		new float[] { 0.4f, 0.0f, 0.3f, 0.3f, 0.0f, 0f, 0f, 0f, 0f, 0f}*/
 
-		new float[] { 0f, 0.35f, 0.25f, 0f, 0f, 0f, 0f, 0.4f, 0f, 0f},
-		new float[] { 0.35f, 0.3f, 0.15f, 0.14f, 0f, 0.06f, 0f, 0f, 0f, 0f},
-		new float[] { 0.27f, 0.23f, 0.13f, 0.16f, 0f, 0.12f, 0.09f, 0f, 0f,0f },
-		new float[] { 0.27f, 0.0f, 0.08f, 0.30f, 0f, 0.17f, 0.18f, 0f, 0f,0f },
+		new float[] { 0.57f, 0.38f, 0f, 0.05f, 0f, 0f, 0f, 0f, 0f, 0f},
+		new float[] { 0.45f, 0.35f, 0f, 0.14f, 0f, 0.06f, 0f, 0f, 0f, 0f},
+		new float[] { 0.35f, 0.28f, 0f, 0.16f, 0f, 0.12f, 0.09f, 0f, 0f,0f },
+		new float[] { 0.27f, 0.08f, 0f, 0.30f, 0f, 0.17f, 0.18f, 0f, 0f,0f },
 		new float[] { 0.25f, 0f, 0f, 0.3f, 0f, 0.2f, 0.25f, 0f, 0f, 0f }
 	};
 
