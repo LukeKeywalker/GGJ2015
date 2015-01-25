@@ -58,6 +58,7 @@ public class BodyController : MonoBehaviour
 		}
 		else if (Input.GetKeyDown(KeyCode.A))
 		{
+			m_limbs[0].Grab();
 		}
 		else if (Input.GetKeyDown(KeyCode.S))
 		{
