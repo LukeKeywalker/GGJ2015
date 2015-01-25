@@ -43,8 +43,8 @@ public class LizardInput : MonoBehaviour
             SetPawBinding(LimbId.LegRight, InputType.Pad2Right);
             */
 
-            SetPawBinding(LimbId.ArmLeft, InputType.Arrows	);
-            SetPawBinding(LimbId.ArmRight, InputType.Arrows);
+            SetPawBinding(LimbId.ArmLeft, InputType.Pad1Left);
+            SetPawBinding(LimbId.ArmRight, InputType.Pad1Right);
             SetPawBinding(LimbId.LegLeft, InputType.Pad2Left);
             SetPawBinding(LimbId.LegRight, InputType.Pad2Right);
         }

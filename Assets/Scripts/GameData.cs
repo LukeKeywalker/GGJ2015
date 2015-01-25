@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class GameData  
 {
 	//time for a rock to fall off while grabbed
-	public static readonly float rockLifetime = 2.5f;
+	public static readonly float rockLifetime = 1.0f;
 
 	public static readonly int[] areaHeights = new int[]
 	{
