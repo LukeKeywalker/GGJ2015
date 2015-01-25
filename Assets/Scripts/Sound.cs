@@ -17,6 +17,8 @@ public class Sound : MonoBehaviour
 		m_pathInResources = pathInResources;
 
 		m_audioSource.loop = loop;
+
+		Load ();
 	}
 	
 	public void Load()
