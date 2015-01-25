@@ -22,7 +22,7 @@ public class LevelGeneratorController : MonoBehaviour
 
 
 	private int m_initialHeight = 60;
-	private int m_width = 18;
+	private int m_width = 12;
 
 	private int m_currentHeight = 0;
 	private int m_refills = 0;
