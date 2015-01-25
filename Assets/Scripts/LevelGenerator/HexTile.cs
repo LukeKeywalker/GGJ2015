@@ -131,7 +131,7 @@ public class HexTile : MonoBehaviour
 			{ HexType.Spikes, DisableLimb},
 			{ HexType.Tard, (Transform t) => {}},
 			{ HexType.Trees, (Transform t) => {}},
-			{ HexType.Water, (Transform t) => { OnHandDrop(); } }
+			{ HexType.Water, (Transform t) => {} }
 		};
 
 		m_hoverEffects = new Dictionary<HexType, Action<Transform>> ()

@@ -56,6 +56,9 @@ public class GameplayController : MonoBehaviour
 
 		if (m_frogBody.position.y > m_levelGenerator.topmostHexLine.position.y - 25)
 			m_levelGenerator.AddMoreTiles();
+
+		if (Input.GetKeyDown(KeyCode.U))
+			AudioManager.Instance.GetSoundByName("Blood").Play();
     }
 
     public void Restart()

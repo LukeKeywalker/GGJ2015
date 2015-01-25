@@ -46,7 +46,7 @@ public class BodyController : MonoBehaviour
 			SpringJoint2D joint = m_limbs[i].GetComponent<SpringJoint2D>();
 			joint.frequency = 0.3f + 0.2f * (float)m_numLimbs;
 		}
-		AudioManager.Instance.GetSoundByName ("Blood");
+		AudioManager.Instance.GetSoundByName ("Blood").Play();
 	}
 
 	void HandlePawDirectionChanged (LimbId arg1, Vector3 arg2)

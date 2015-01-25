@@ -25,7 +25,7 @@ public class AudioManager : MonoBehaviour
 		Sounds.Plop = InitSound ("sounds/plop", "Plop", 1.0f);
 		Sounds.RockSlide = InitSound ("sounds/rockslide", "Rock Slide", 1.0f);
 		Sounds.Splash = InitSound ("sounds/splash", "Splash", 1.0f);
-		Sounds.Waterfall = InitSound ("sounds/waterfall", "Waterfall", 0.15f);
+		Sounds.Waterfall = InitSound ("sounds/waterfall", "Waterfall", 0.15f, true);
 		Sounds.WilhelmScream = InitSound ("sounds/WilhelmScream", "Wilhelm Scream", 1.0f);
 		Sounds.Blood = InitSound ("sounds/blood", "Blood", 1.0f);
 	}
