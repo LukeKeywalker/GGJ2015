@@ -42,8 +42,8 @@ MonoBehaviour:
   material: {fileID: 2100000, guid: 6f763748d7e7d0841920e8298c463b69, type: 2}
   mSprites:
   - name: button
-    x: 831
-    y: 1999
+    x: 0
+    y: 1
     width: 64
     height: 49
     borderLeft: 0
@@ -55,8 +55,8 @@ MonoBehaviour:
     paddingTop: 7
     paddingBottom: 8
   - name: buttonsHoverCredits
-    x: 277
-    y: 1322
+    x: 553
+    y: 298
     width: 276
     height: 726
     borderLeft: 0
@@ -68,8 +68,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: buttonsHoverPlay
-    x: 554
-    y: 1322
+    x: 830
+    y: 298
     width: 276
     height: 726
     borderLeft: 0
@@ -81,8 +81,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: buttonsIdle
-    x: 0
-    y: 1322
+    x: 1107
+    y: 298
     width: 276
     height: 726
     borderLeft: 0
@@ -93,11 +93,76 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
-  - name: replayButton
-    x: 277
-    y: 883
+  - name: credits
+    x: 0
+    y: 346
+    width: 552
+    height: 678
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: credits_button
+    x: 830
+    y: 9
+    width: 276
+    height: 288
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: credits_button_hover
+    x: 1107
+    y: 9
+    width: 276
+    height: 288
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: play_button
+    x: 1384
+    y: 586
     width: 276
     height: 438
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: play_button_hover
+    x: 1661
+    y: 586
+    width: 276
+    height: 438
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: replayButton
+    x: 0
+    y: 51
+    width: 276
+    height: 294
     borderLeft: 0
     borderRight: 0
     borderTop: 0
@@ -107,10 +172,10 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: replayButtonHover
-    x: 0
-    y: 883
+    x: 553
+    y: 3
     width: 276
-    height: 438
+    height: 294
     borderLeft: 0
     borderRight: 0
     borderTop: 0
@@ -120,8 +185,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: restratbutton
-    x: 896
-    y: 1999
+    x: 65
+    y: 1
     width: 64
     height: 49
     borderLeft: 0
@@ -132,9 +197,22 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 7
     paddingBottom: 8
+  - name: scoreBG
+    x: 1384
+    y: 489
+    width: 660
+    height: 96
+    borderLeft: 50
+    borderRight: 50
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
   - name: stratbutton
-    x: 831
-    y: 1949
+    x: 130
+    y: 1
     width: 64
     height: 49
     borderLeft: 0
@@ -146,8 +224,8 @@ MonoBehaviour:
     paddingTop: 7
     paddingBottom: 8
   - name: white
-    x: 961
-    y: 2044
+    x: 195
+    y: 46
     width: 4
     height: 4
     borderLeft: 1
