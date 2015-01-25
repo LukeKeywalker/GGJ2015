@@ -24,7 +24,7 @@ public class LizardInput : MonoBehaviour
         {
             m_instance = this;
 
-            DontDestroyOnLoad(this);
+            //DontDestroyOnLoad(this);
 
             m_pawsBinding = new InputType[4];
 

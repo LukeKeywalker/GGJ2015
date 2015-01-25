@@ -8,7 +8,14 @@ public class Water : MonoBehaviour
 
     private WaterSlice[] m_waterSlices;
 
+    public float m_floodSpeed = 1.0f;
+
     private float m_cooldown;
+
+    public float WaterLevel
+    {
+        get { return m_waterSlicesContainer.transform.position.y; }
+    }
 
     void Awake()
     {
@@ -75,6 +82,10 @@ public class Water : MonoBehaviour
 
             m_waterSlices[Random.Range(0, m_waterSlices.Length)].Move(0.10f);
         }
+
+        Vector3 position = m_waterSlicesContainer.transform.position;
+        position.y += m_floodSpeed * Time.deltaTime;
+        m_waterSlicesContainer.transform.position = position;
 	}
 
     private void GetMovingWaves(int index, out int leftIndex, out int rightIndex)

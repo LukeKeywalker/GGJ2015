@@ -13,6 +13,8 @@ public class AudioManager : MonoBehaviour
 		public static Sound RockSlide;
 		public static Sound Splash;
 		public static Sound Waterfall;
+		public static Sound WilhelmScream;
+		public static Sound Blood;
 	}
 	
 	private void InitializeSounds()
@@ -24,6 +26,8 @@ public class AudioManager : MonoBehaviour
 		Sounds.RockSlide = InitSound ("sounds/rockslide", "Rock Slide");
 		Sounds.Splash = InitSound ("sounds/splash", "Splash");
 		Sounds.Waterfall = InitSound ("sounds/waterfall", "Waterfall");
+		Sounds.WilhelmScream = InitSound ("sounds/WilhelmScream", "Wilhelm Scream");
+		Sounds.Blood = InitSound ("sounds/blood", "Blood");
 	}
 	
 	private Sound InitSound(string pathInResources, string name, bool loop = false)
