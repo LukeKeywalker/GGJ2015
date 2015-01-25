@@ -56,7 +56,7 @@ public class AudioManager : MonoBehaviour
 	private float m_musicVolume = 1;
 	private float m_soundVolume = 1;
 	
-	private static List<Sound> m_sounds = new List<Sound>();
+	private List<Sound> m_sounds = new List<Sound>();
 	
 	private static AudioManager m_instance;
 	
