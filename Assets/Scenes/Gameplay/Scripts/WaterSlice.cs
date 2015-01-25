@@ -60,12 +60,12 @@ public class WaterSlice : MonoBehaviour
         if (m_power < 0.005f)
             m_isMoveing = false;
 
-        m_isRaising = m_top > transform.position.y;
+        m_isRaising = m_top > transform.localPosition.y;
 
-        Vector3 position = transform.position;
-        position.y = m_top;
+        Vector3 localPosition = transform.localPosition;
+        localPosition.y = m_top;
 
-        transform.position = position;
+        transform.localPosition = localPosition;
 	}
 
     public void Move(float power)
