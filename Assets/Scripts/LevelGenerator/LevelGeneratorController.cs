@@ -21,7 +21,7 @@ public class LevelGeneratorController : MonoBehaviour
 	private float m_dx;
 
 
-	private int m_initialHeight = 60;
+	private int m_initialHeight = 40;
 	private int m_width = 18;
 
 	private int m_currentHeight = 0;
