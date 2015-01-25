@@ -42,8 +42,8 @@ MonoBehaviour:
   material: {fileID: 2100000, guid: 6f763748d7e7d0841920e8298c463b69, type: 2}
   mSprites:
   - name: button
-    x: 0
-    y: 207
+    x: 831
+    y: 1999
     width: 64
     height: 49
     borderLeft: 0
@@ -54,9 +54,74 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 7
     paddingBottom: 8
-  - name: restratbutton
+  - name: buttonsHoverCredits
+    x: 277
+    y: 1322
+    width: 276
+    height: 726
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: buttonsHoverPlay
+    x: 554
+    y: 1322
+    width: 276
+    height: 726
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: buttonsIdle
     x: 0
-    y: 157
+    y: 1322
+    width: 276
+    height: 726
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: replayButton
+    x: 277
+    y: 883
+    width: 276
+    height: 438
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: replayButtonHover
+    x: 0
+    y: 883
+    width: 276
+    height: 438
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: restratbutton
+    x: 896
+    y: 1999
     width: 64
     height: 49
     borderLeft: 0
@@ -68,8 +133,8 @@ MonoBehaviour:
     paddingTop: 7
     paddingBottom: 8
   - name: stratbutton
-    x: 0
-    y: 107
+    x: 831
+    y: 1949
     width: 64
     height: 49
     borderLeft: 0
@@ -81,8 +146,8 @@ MonoBehaviour:
     paddingTop: 7
     paddingBottom: 8
   - name: white
-    x: 65
-    y: 252
+    x: 961
+    y: 2044
     width: 4
     height: 4
     borderLeft: 1
