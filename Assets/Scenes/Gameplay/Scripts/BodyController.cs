@@ -3,9 +3,17 @@ using System.Collections;
 
 public class BodyController : MonoBehaviour
 {
+
+
 	public Limb[] m_limbs;
 	public ParticleSystem[] m_wounds;
 	private Vector3[] m_pawDirection;
+
+	public float m_gripLoseRate = 0.15f;
+	public float m_grippLooseRateMultiplier = 1.0f;
+	public float m_jumpForce = 3500.0f;
+
+	private int m_numLimbs = 4;
 
 	// Use this for initialization
 	void Start () {
@@ -19,6 +27,22 @@ public class BodyController : MonoBehaviour
 		{
 			m_limbs[i].Wound = m_wounds[i];
 			m_limbs[i].Grab();
+			m_limbs[i].m_jumpForce = m_jumpForce;
+			m_limbs[i].m_gripLoseRate = m_gripLoseRate;
+			m_limbs[i].m_grippLooseRateMultiplier = m_grippLooseRateMultiplier;
+			m_limbs[i].LimbBroke = OnLimBroke;
+		}
+	}
+
+	void OnLimBroke()
+	{
+		Debug.Log ("OnLimbBroke");
+		m_numLimbs--;
+		Debug.Log ("NumLimbs = " + m_numLimbs.ToString());
+		for (int i = 0; i < 4; i++)
+		{
+			SpringJoint2D joint = m_limbs[i].GetComponent<SpringJoint2D>();
+			joint.frequency = 0.3f + 0.2f * (float)m_numLimbs;
 		}
 	}
 
@@ -29,6 +53,7 @@ public class BodyController : MonoBehaviour
 
 		m_pawDirection[(int)limb] = direction;
 		m_limbs[(int)limb].transform.up = direction;
+		m_limbs[(int)limb].Wound.transform.forward = direction;
 	}
 
 	void HandlePawReleased (LimbId obj)
@@ -46,23 +71,5 @@ public class BodyController : MonoBehaviour
 		m_limbs[limb].Grab();
 
 		Debug.Log (((LimbId)obj).ToString() + " grab.");
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		if (Input.GetKeyDown(KeyCode.Q))
-		{
-			//m_armLeft.ToggleAttach();
-		}
-		else if (Input.GetKeyDown(KeyCode.W))
-		{
-		}
-		else if (Input.GetKeyDown(KeyCode.A))
-		{
-			m_limbs[0].Grab();
-		}
-		else if (Input.GetKeyDown(KeyCode.S))
-		{
-		}
 	}
 }
