@@ -20,6 +20,12 @@ public class GameplayController : MonoBehaviour
         SetSatate(GameplayState.Playing);
     }
 
+	void Start()
+	{
+		AudioManager.Instance.PlayMusic ();
+		AudioManager.Instance.GetSoundByName ("Waterfall").Play();
+	}
+
     void Update()
     {
         switch (m_gameplayState)
@@ -50,6 +56,8 @@ public class GameplayController : MonoBehaviour
 
     private void Die()
     {
+		AudioManager.Instance.GetSoundByName ("Splash").Play();
+
         m_summaryPanel.gameObject.SetActive(true);
 
         SetSatate(GameplayState.Summary);

@@ -12,7 +12,7 @@ public class Sound : MonoBehaviour
 		m_audioSource = GetComponent<AudioSource>();
 	}
 	
-	public void Initialize(string pathInResources, bool loop)
+	public void Initialize(string pathInResources, bool loop, float volume)
 	{
 		m_pathInResources = pathInResources;
 

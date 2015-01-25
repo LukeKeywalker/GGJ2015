@@ -98,6 +98,8 @@ public class Limb : MonoBehaviour
 		{
 			hex.OnHandGrab (this.transform);
 			m_rigidbody.isKinematic = hex.m_logic.grabable;
+			if (hex.m_logic.grabable)
+				AudioManager.Instance.GetSoundByName("Plop").Play();
 		}
 		else
 			Debug.Log("ignoring on hand grab event");
@@ -178,6 +180,7 @@ public class Limb : MonoBehaviour
 			m_gui.RefreshView();
 			item.onPickedUp(this.transform);
 			Destroy(item.gameObject);
+			AudioManager.Instance.GetSoundByName("Insect").Play();
 		}
 	}
 }
