@@ -27,6 +27,9 @@ public class Limb : MonoBehaviour
 	public float m_jumpForce = 3500.0f;
 	public ParticleSystem m_handWound;
 
+	private bool m_cooldown;
+	private float m_cooldownTimer = 0.5f;
+
 
 	void Awake() {
 		m_gui = FindObjectOfType<GUIView> ();
@@ -85,22 +88,29 @@ public class Limb : MonoBehaviour
 			Debug.Log("ignoring hand released event");
 		}
 	}
+	public void resetCooldown(){
+		m_cooldown =false;
+	}
 
 	public void Grab()
 	{
-		GripIndicator = m_colorHold;
-		StartCoroutine("LooseGrip");
-		CloseHand();
+		if(!m_cooldown){
+			m_cooldown=true;
+			Invoke("resetCooldown",m_cooldownTimer);
+			GripIndicator = m_colorHold;
+			StartCoroutine("LooseGrip");
+			CloseHand();
 
 
-		HexTile hex = LevelGeneratorController.GetHexByPosition (this.transform.position);
-		if (hex != null)
-		{
-			hex.OnHandGrab (this.transform);
-			m_rigidbody.isKinematic = hex.m_logic.grabable;
+			HexTile hex = LevelGeneratorController.GetHexByPosition (this.transform.position);
+			if (hex != null)
+			{
+				hex.OnHandGrab (this.transform);
+				m_rigidbody.isKinematic = hex.m_logic.grabable;
+			}
+			else
+				Debug.Log("ignoring on hand grab event");
 		}
-		else
-			Debug.Log("ignoring on hand grab event");
 	}
 
 	private float reaction
