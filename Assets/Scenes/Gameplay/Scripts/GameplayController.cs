@@ -36,6 +36,13 @@ public class GameplayController : MonoBehaviour
 	{
 		AudioManager.Instance.PlayMusic ();
 		AudioManager.Instance.GetSoundByName ("Waterfall").Play();
+
+		LizardInput.Instance.StartPressed += HandleStartPressed;
+	}
+
+	void HandleStartPressed ()
+	{
+		Restart();
 	}
 
     void Update()

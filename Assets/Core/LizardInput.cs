@@ -8,6 +8,7 @@ public class LizardInput : MonoBehaviour
     public event System.Action<LimbId> PawGriped;
     public event System.Action<LimbId> PawReleased;
     public event System.Action<LimbId, Vector3> PawDirectionChanged;
+	public event System.Action StartPressed;
 
 
     private InputType[] m_pawsBinding;
@@ -82,6 +83,23 @@ public class LizardInput : MonoBehaviour
         m_pawsBinding[(int)pawType] = inputType;
     }
 
+	private bool m_PrevStart = false;
+	private bool GetStartState(InputType inputType)
+	{
+		bool result = false;
+		switch(inputType)
+		{
+		case InputType.Pad1Left: result = Input.GetAxis("Pad1Start") > 0.5; break;
+		case InputType.Pad1Right: result = Input.GetAxis("Pad1Start") > 0.5; break;
+		case InputType.Pad2Left: result = Input.GetAxis("Pad2Start") > 0.5; break;
+		case InputType.Pad2Right: result = Input.GetAxis("Pad2Start") > 0.5; break;
+		}
+
+		bool ret = result && !m_PrevStart;
+		m_PrevStart = result;
+		return ret;
+	}
+	 
     private bool GetGripState(InputType inputType)
     {
         switch (inputType)
@@ -102,6 +120,14 @@ public class LizardInput : MonoBehaviour
     private void UpdateDirection(LimbId pawType)
     {
         float speed = 40.0f;
+
+		if (GetStartState(InputType.Pad1Left) || GetStartState(InputType.Pad2Left))
+		{
+			if (StartPressed != null)
+			{
+				StartPressed();
+			}
+		}
 
         InputType inputType = m_pawsBinding[(int)pawType];
 
