@@ -13,15 +13,27 @@ public class GameplayController : MonoBehaviour
     public Transform m_frogBody;
     public SummaryPanel m_summaryPanel;
 
+    public float m_maxPoints;
+
     private GameplayState m_gameplayState;
 
     void Awake()
     {
         SetSatate(GameplayState.Playing);
+
+        m_maxPoints = 0.0f;
+
+        GameData.scores[0] = 0;
+        GameData.scores[1] = 0;
+        GameData.scores[2] = 0;
+        GameData.scores[3] = 0;
     }
 
     void Update()
     {
+        if (m_maxPoints < m_frogBody.position.y)
+            m_maxPoints = m_frogBody.position.y;
+
         switch (m_gameplayState)
         {
             case GameplayState.Playing:
@@ -50,6 +62,22 @@ public class GameplayController : MonoBehaviour
 
     private void Die()
     {
+        int record = PlayerPrefs.GetInt("record", 0);
+
+        m_summaryPanel.SetSummary(
+            (int)m_maxPoints,
+            record,
+            GameData.scores[0],
+            GameData.scores[1],
+            GameData.scores[2],
+            GameData.scores[3]);
+
+        if ((int)m_maxPoints > record)
+        {
+            PlayerPrefs.SetInt("record", (int)m_maxPoints);
+            PlayerPrefs.Save();
+        }
+
         m_summaryPanel.gameObject.SetActive(true);
 
         SetSatate(GameplayState.Summary);

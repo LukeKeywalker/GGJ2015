@@ -129,7 +129,7 @@ public class Limb : MonoBehaviour
 				Wound.Play();
 				m_handWound.Play();
 
-				return false;
+                yield return false;
 			}
 			else {
 				yield return null;
