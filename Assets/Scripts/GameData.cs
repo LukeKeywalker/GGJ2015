@@ -9,7 +9,7 @@ public class GameData
 
 	public static readonly int[] areaHeights = new int[]
 	{
-		0, 5, 10, 15, 20, 25
+		0, 5, 10, 15, 20
 	};
 
 	//Dirt, Trees, Grass, Rocks, Sand, Water, Ice, Spikes, Tard, Lava
