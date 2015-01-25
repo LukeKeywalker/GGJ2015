@@ -119,7 +119,7 @@ public class Limb : MonoBehaviour
 	{
 		get
 		{
-			return (transform.position - m_limbSlot.transform.position).magnitude / 2.5f;
+			return (transform.position - m_limbSlot.transform.position).magnitude / 4.5f;
 		}
 	}
 
