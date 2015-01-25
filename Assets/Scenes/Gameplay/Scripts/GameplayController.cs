@@ -12,6 +12,7 @@ public class GameplayController : MonoBehaviour
     public Water m_water;
     public Transform m_frogBody;
     public SummaryPanel m_summaryPanel;
+	public GUIView m_view;
 
     public float m_maxPoints;
 
@@ -47,6 +48,8 @@ public class GameplayController : MonoBehaviour
                     Die();
                 break;
         }
+
+		m_view.ChangeHeight (Mathf.RoundToInt (m_frogBody.transform.position.y));
     }
 
     public void Restart()
