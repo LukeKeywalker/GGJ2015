@@ -5,7 +5,7 @@ public class Waterfall : MonoBehaviour
 {
     public WaterfallSlice m_waterfallSlicePrefab;
     public Transform m_waterContainer;
-    public Water m_water;
+    public Transform m_target; // na przyklad kamera
 
     private WaterfallSlice[] m_waterfallSlices;
 
@@ -41,6 +41,6 @@ public class Waterfall : MonoBehaviour
                 m_waterfallSlices[i].Restart();
         }
 
-        m_waterContainer.position = new Vector3(m_waterContainer.position.x, m_water.WaterLevel, m_waterContainer.position.z);
+        m_waterContainer.position = new Vector3(m_waterContainer.position.x, m_target.position.y, m_waterContainer.position.z);
 	}
 }
