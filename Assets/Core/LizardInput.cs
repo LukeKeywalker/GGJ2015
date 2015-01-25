@@ -8,7 +8,7 @@ public class LizardInput : MonoBehaviour
     public event System.Action<LimbId> PawGriped;
     public event System.Action<LimbId> PawReleased;
     public event System.Action<LimbId, Vector3> PawDirectionChanged;
-	public event System.Action StartPressed;
+	public System.Action StartPressed;
 
 
     private InputType[] m_pawsBinding;
@@ -37,17 +37,18 @@ public class LizardInput : MonoBehaviour
                 m_pawsPrevStates[i].Direction = Vector3.up;
             }
 
-			/*
+
             SetPawBinding(LimbId.ArmLeft, InputType.Pad1Left);
             SetPawBinding(LimbId.ArmRight, InputType.Pad1Right);
 			SetPawBinding(LimbId.LegLeft, InputType.Pad2Left);
-            SetPawBinding(LimbId.LegRight, InputType.Pad2Right);*/
+            SetPawBinding(LimbId.LegRight, InputType.Pad2Right);
 
-
+			/*
             SetPawBinding(LimbId.ArmLeft, InputType.Wasd);
             SetPawBinding(LimbId.ArmRight, InputType.Wasd);
             SetPawBinding(LimbId.LegLeft, InputType.Wasd);
             SetPawBinding(LimbId.LegRight, InputType.Wasd);
+            */
         }
     }
 
