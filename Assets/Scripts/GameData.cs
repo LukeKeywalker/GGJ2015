@@ -28,6 +28,12 @@ public class GameData
 		new float[] { 0.25f, 0f, 0f, 0.3f, 0f, 0.2f, 0.25f, 0f, 0f, 0f }
 	};
 
+	//small bug (1 point), big bug (2 point)
+	public static readonly float[] bugProbabilities = new float[]
+	{
+		0.2f, 0.05f
+	};
+
 	public static readonly Dictionary<HexTile.HexType, HexTile.HexLogic> hexesLogic = new Dictionary<HexTile.HexType, HexTile.HexLogic> ()
 	{
 

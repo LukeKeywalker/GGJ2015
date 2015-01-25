@@ -113,11 +113,15 @@ public class LevelGeneratorController : MonoBehaviour
 
 			if (UnityEngine.Random.Range(0, 1.0f) > 0.9f)
 			{
-				BasePickupItem item = (BasePickupItem)Instantiate (m_itemPrefabs[0]);
-				item.transform.parent = hex.transform;
-				item.transform.localScale = Vector3.one;
-				item.transform.localRotation = Quaternion.Euler(0, 180, 0);
-				item.transform.localPosition = new Vector3(0, 0, -10);
+				Fly bug = GetRandomBug();
+				if (bug != null)
+				{
+					BasePickupItem item = (BasePickupItem)Instantiate (bug);
+					item.transform.parent = hex.transform;
+					item.transform.localScale = Vector3.one;
+					item.transform.localRotation = Quaternion.Euler(0, 180, 0);
+					item.transform.localPosition = new Vector3(0, 0, -10);
+				}
 			}
 		}
 	}
@@ -134,6 +138,19 @@ public class LevelGeneratorController : MonoBehaviour
 		}
 		Debug.Log (sum);
 		throw new UnityException("Probabilities don't sum");
+	}
+
+	private Fly GetRandomBug()
+	{
+		float random = UnityEngine.Random.Range (0.0f, 1.0f);
+		float sum = 0;
+		for (int i = 0; i < GameData.bugProbabilities.Length; i++)
+		{
+			sum += GameData.bugProbabilities[i];
+			if (random < sum)
+				return m_itemPrefabs[i] as Fly;
+		}
+		return null;
 	}
 
 	private void Update()
