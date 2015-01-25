@@ -71,7 +71,7 @@ public class Limb : MonoBehaviour
 	public void Shoot(Vector2 normalizedDirection)
 	{
 		Vector2 direction = m_jumpForce * normalizedDirection;
-		if (!m_springJoint.enabled) return;
+		//if (!m_springJoint.enabled) return;
 
 		StopCoroutine("LooseGrip");
 		m_grip = 1.0f;
