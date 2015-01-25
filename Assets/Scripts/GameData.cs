@@ -28,6 +28,12 @@ public class GameData
 		new float[] { 0.25f, 0f, 0f, 0.3f, 0f, 0.2f, 0.25f, 0f, 0f, 0f }
 	};
 
+	//small bug (1 point), big bug (2 point)
+	public static readonly float[] bugProbabilities = new float[]
+	{
+		0.2f, 0.05f
+	};
+
 	public static readonly Dictionary<HexTile.HexType, HexTile.HexLogic> hexesLogic = new Dictionary<HexTile.HexType, HexTile.HexLogic> ()
 	{
 
@@ -37,7 +43,7 @@ public class GameData
 		{ HexTile.HexType.Lava, new HexTile.HexLogic(1, false) },
 		{ HexTile.HexType.Rocks, new HexTile.HexLogic(0.94f, true) },
 		{ HexTile.HexType.Sand, new HexTile.HexLogic(0.85f, true) },
-		{ HexTile.HexType.Spikes, new HexTile.HexLogic(1, false) },
+		{ HexTile.HexType.Spikes, new HexTile.HexLogic(1, true) },
 		{ HexTile.HexType.Tard, new HexTile.HexLogic(0, true) },
 		{ HexTile.HexType.Trees, new HexTile.HexLogic(1, true) },
 		{ HexTile.HexType.Water, new HexTile.HexLogic(0, false) },

@@ -7,5 +7,6 @@
     Wasd,
     Ijkl,
     Arrows,
-    Numpad5123
+    Numpad5123,
+	None
 }

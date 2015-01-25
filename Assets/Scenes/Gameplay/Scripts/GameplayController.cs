@@ -17,9 +17,11 @@ public class GameplayController : MonoBehaviour
     public float m_maxPoints;
 
     private GameplayState m_gameplayState;
+	private LevelGeneratorController m_levelGenerator;
 
     void Awake()
     {
+		m_levelGenerator = FindObjectOfType<LevelGeneratorController> ();
         SetSatate(GameplayState.Playing);
 
         m_maxPoints = 0.0f;
@@ -51,6 +53,9 @@ public class GameplayController : MonoBehaviour
 
 		if (m_gameplayState == GameplayState.Playing)
 			m_view.ChangeHeight (Mathf.RoundToInt (m_frogBody.transform.position.y));
+
+		if (m_frogBody.position.y > m_levelGenerator.topmostHexLine.position.y - 25)
+			m_levelGenerator.AddMoreTiles();
     }
 
     public void Restart()
