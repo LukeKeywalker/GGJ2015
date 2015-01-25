@@ -152,6 +152,8 @@ public class HexTile : MonoBehaviour
 	private void Start()
 	{
 		m_startingPosition = transform.localPosition;
+		if (m_hexType == HexType.Spikes)
+			StartCoroutine("BladeRotateCoroutine");
 	}
 
 	private void Update()
@@ -197,6 +199,18 @@ public class HexTile : MonoBehaviour
 		Limb limb = limbTransform.GetComponent<Limb> ();
 		limb.BrakeLimb ();
 		OnHandDrop ();
+	}
+
+	private IEnumerator BladeRotateCoroutine()
+	{
+		float z = 0;
+		float bladeSpeed = 10;
+		while (true)
+		{
+			z += bladeSpeed;
+			this.transform.localRotation = Quaternion.Euler(0, 0, z);
+			yield return null;
+		}
 	}
 
 	private IEnumerator RockFallOffCoroutine()
