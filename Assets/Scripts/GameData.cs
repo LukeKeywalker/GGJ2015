@@ -21,7 +21,7 @@ public class GameData
 		new float[] { 0.4f, 0.0f, 0.3f, 0.3f, 0.0f, 0f, 0f, 0f, 0f, 0f},
 		new float[] { 0.4f, 0.0f, 0.3f, 0.3f, 0.0f, 0f, 0f, 0f, 0f, 0f}*/
 
-		new float[] { 0.4f, 0.35f, 0.25f, 0f, 0f, 0f, 0f, 0f, 0f, 0f},
+		new float[] { 0f, 0.35f, 0.25f, 0f, 0f, 0f, 0f, 0.4f, 0f, 0f},
 		new float[] { 0.35f, 0.3f, 0.15f, 0.14f, 0f, 0.06f, 0f, 0f, 0f, 0f},
 		new float[] { 0.27f, 0.23f, 0.13f, 0.16f, 0f, 0.12f, 0.09f, 0f, 0f,0f },
 		new float[] { 0.27f, 0.0f, 0.08f, 0.30f, 0f, 0.17f, 0.18f, 0f, 0f,0f },
@@ -43,7 +43,7 @@ public class GameData
 		{ HexTile.HexType.Lava, new HexTile.HexLogic(1, false) },
 		{ HexTile.HexType.Rocks, new HexTile.HexLogic(0.94f, true) },
 		{ HexTile.HexType.Sand, new HexTile.HexLogic(0.85f, true) },
-		{ HexTile.HexType.Spikes, new HexTile.HexLogic(1, false) },
+		{ HexTile.HexType.Spikes, new HexTile.HexLogic(1, true) },
 		{ HexTile.HexType.Tard, new HexTile.HexLogic(0, true) },
 		{ HexTile.HexType.Trees, new HexTile.HexLogic(1, true) },
 		{ HexTile.HexType.Water, new HexTile.HexLogic(0, false) },
