@@ -1065,7 +1065,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 100
   m_GravityScale: 1
-  m_FixedAngle: 0
+  m_FixedAngle: 1
   m_IsKinematic: 1
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -1080,7 +1080,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 100
   m_GravityScale: 1
-  m_FixedAngle: 0
+  m_FixedAngle: 1
   m_IsKinematic: 1
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -1091,7 +1091,7 @@ Rigidbody2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100018}
-  m_Mass: 15
+  m_Mass: 4
   m_LinearDrag: 0
   m_AngularDrag: 1
   m_GravityScale: 4
@@ -1110,7 +1110,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 100
   m_GravityScale: 1
-  m_FixedAngle: 0
+  m_FixedAngle: 1
   m_IsKinematic: 1
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -1125,7 +1125,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 100
   m_GravityScale: 1
-  m_FixedAngle: 0
+  m_FixedAngle: 1
   m_IsKinematic: 1
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -9872,7 +9872,7 @@ SpringJoint2D:
   m_ConnectedRigidBody: {fileID: 5000004}
   m_Anchor: {x: 0, y: 0}
   m_ConnectedAnchor: {x: .234677806, y: -.0077451705}
-  m_Distance: 3
+  m_Distance: .800000012
   m_DampingRatio: 0
   m_Frequency: .800000012
 --- !u!231 &23100002
@@ -9886,7 +9886,7 @@ SpringJoint2D:
   m_ConnectedRigidBody: {fileID: 5000004}
   m_Anchor: {x: 0, y: 0}
   m_ConnectedAnchor: {x: -.331698745, y: -.69921571}
-  m_Distance: 3
+  m_Distance: .800000012
   m_DampingRatio: 0
   m_Frequency: .800000012
 --- !u!231 &23100004
@@ -9900,7 +9900,7 @@ SpringJoint2D:
   m_ConnectedRigidBody: {fileID: 5000004}
   m_Anchor: {x: 0, y: 0}
   m_ConnectedAnchor: {x: .317464709, y: -.711397767}
-  m_Distance: 3
+  m_Distance: .800000012
   m_DampingRatio: 0
   m_Frequency: .800000012
 --- !u!231 &23100006
@@ -9914,7 +9914,7 @@ SpringJoint2D:
   m_ConnectedRigidBody: {fileID: 5000004}
   m_Anchor: {x: 0, y: 0}
   m_ConnectedAnchor: {x: -.303611219, y: .0428102389}
-  m_Distance: 3
+  m_Distance: .800000012
   m_DampingRatio: 0
   m_Frequency: .800000012
 --- !u!1001 &100100000
