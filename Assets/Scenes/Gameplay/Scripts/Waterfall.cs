@@ -4,6 +4,7 @@ using System.Collections;
 public class Waterfall : MonoBehaviour
 {
     public WaterfallSlice m_waterfallSlicePrefab;
+    public Transform m_waterContainer;
 
     private WaterfallSlice[] m_waterfallSlices;
 
@@ -21,6 +22,7 @@ public class Waterfall : MonoBehaviour
         for (int i = 0; i < count; i++)
         {
             m_waterfallSlices[i] = (WaterfallSlice)Instantiate(m_waterfallSlicePrefab);
+            m_waterfallSlices[i].transform.parent = m_waterContainer;
             m_waterfallSlices[i].Restart();
         }
     }

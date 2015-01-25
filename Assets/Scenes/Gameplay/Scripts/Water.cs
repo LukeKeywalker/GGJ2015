@@ -4,6 +4,7 @@ using System.Collections;
 public class Water : MonoBehaviour
 {
     public WaterSlice m_waterSlicePrefab;
+    public Transform m_waterSlicesContainer;
 
     private WaterSlice[] m_waterSlices;
 
@@ -27,8 +28,10 @@ public class Water : MonoBehaviour
         for (float x = -wide; x <= wide; x += step)
         {
             m_waterSlices[index] = (WaterSlice)Instantiate(m_waterSlicePrefab);
+            m_waterSlices[index].transform.parent = m_waterSlicesContainer;
             m_waterSlices[index].transform.localScale = Vector3.one;
             m_waterSlices[index].transform.localPosition = new Vector3(x, 0.0f, -0.01f);
+            
 
             index++;
         }
@@ -68,7 +71,7 @@ public class Water : MonoBehaviour
         m_cooldown -= Time.deltaTime;
         if (m_cooldown < 0.0f)
         {
-            m_cooldown = Random.Range(0.01f, 0.5f);
+            m_cooldown = Random.Range(0.01f, 0.3f);
 
             m_waterSlices[Random.Range(0, m_waterSlices.Length)].Move(0.10f);
         }
