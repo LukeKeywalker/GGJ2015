@@ -28,6 +28,7 @@ public class BodyController : MonoBehaviour
 		LimbId limb = (LimbId)arg1;
 
 		m_pawDirection[(int)limb] = direction;
+		m_limbs[(int)limb].transform.up = direction;
 	}
 
 	void HandlePawReleased (LimbId obj)
