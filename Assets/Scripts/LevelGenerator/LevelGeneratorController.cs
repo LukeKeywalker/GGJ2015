@@ -16,8 +16,8 @@ public class LevelGeneratorController : MonoBehaviour
 	private float m_dx;
 
 
-	private int m_initialHeight = 25;
-	private int m_width = 16;
+	private int m_initialHeight = 60;
+	private int m_width = 18;
 
 	public static HexTile GetHexByPosition(Vector3 position)
 	{

@@ -49,7 +49,8 @@ public class GameplayController : MonoBehaviour
                 break;
         }
 
-		m_view.ChangeHeight (Mathf.RoundToInt (m_frogBody.transform.position.y));
+		if (m_gameplayState == GameplayState.Playing)
+			m_view.ChangeHeight (Mathf.RoundToInt (m_frogBody.transform.position.y));
     }
 
     public void Restart()
@@ -61,6 +62,7 @@ public class GameplayController : MonoBehaviour
     {
         m_gameplayState = state;
 
+		m_view.m_heightLabel.gameObject.SetActive (state == GameplayState.Playing);
         switch (state)
         {
             case GameplayState.Playing:
